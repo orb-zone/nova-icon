@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Layered SVG Icons — Improved Custom Properties</title>
+<style>
+  .stage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    place-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background: #111;
+  }
+
+  svg.icon {
+    /* Base drawing defaults */
+    --cursor: pointer;
+    --line-cap: round;
+    --line-join: round;
+    --line-color: currentColor;
+    --line-weight: 2;
+
+    /* Animation defaults */
+    --transition-duration: 2.2s;
+    --transition-delay: 0s;
+    --transition-timing: ease-out;
+
+    /* Normalized dash values via pathLength="1" */
+    --dash-array: 1;
+    --dash-offset: 1;
+
+    inline-size: var(--size, 160px);
+    block-size: var(--size, 160px);
+
+    color: gold; /* theme via currentColor (can be overridden) */
+  }
+
+  /* Animate all layers on hover/playing.
+     Put the animated var on <use> because it's the instance root. */
+  svg.icon:hover use,
+  svg.icon.playing use {
+    --dash-offset: 0;
+  }
+
+  /* FX layers shouldn't capture pointer events */
+  use.fx { pointer-events: none; }
+
+  /* Reduced motion: no animation */
+  @media (prefers-reduced-motion: reduce) {
+    svg.icon use { --dash-offset: 0 !important; }
+    svg.icon path { transition: none !important; }
+  }
+
+  .icon-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .icon-group h2 {
+    color: #aaa;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- defs: symbols & filters -->
+  <svg aria-hidden="true" style="position:absolute; width:0; height:0; overflow:hidden">
+    <defs>
+      <!-- Subtle glow filter -->
+      <filter id="glow-2" filterUnits="userSpaceOnUse" x="-8" y="-8" width="40" height="40">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/>
+        <feMerge>
+          <feMergeNode in="b"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+
+      <!-- STAR symbol -->
+      <symbol id="icon-star" viewBox="-3 -3 30 30">
+        <g
+          fill="var(--fill, none)"
+          stroke="var(--stroke, var(--line-color, currentColor))"
+          stroke-width="var(--line-weight)"
+          stroke-linecap="var(--line-cap)"
+          stroke-linejoin="var(--line-join)"
+          stroke-dasharray="var(--dash-array)"
+          stroke-dashoffset="var(--dash-offset)"
+          style="cursor: var(--cursor);"
+        >
+          <!-- Path transitions now use passed-in custom properties -->
+          <path
+            pathLength="1"
+            style="
+              --path-index: 0;
+              transition: stroke-dashoffset var(--transition-duration) var(--transition-timing);
+              transition-delay: calc(var(--transition-delay) + var(--stagger-amount, 0s) * var(--path-index));
+            "
+            d="M12 2 L15 10 L23 10 L17 14 L19 22 L12 18 L5 22 L7 14 L1 10 L9 10 Z"
+          />
+          <path
+            pathLength="1"
+            style="
+              --path-index: 1;
+              --line-weight: 1;
+              transition: stroke-dashoffset var(--transition-duration) var(--transition-timing);
+              transition-delay: calc(var(--transition-delay) + var(--stagger-amount, 0s) * var(--path-index));
+            "
+            d="M12 6 L14 12 L12 14 L10 12 Z"
+          />
+        </g>
+      </symbol>
+
+      <!-- SUN RAYS symbol -->
+      <symbol id="icon-sun-rays" viewBox="-3 -3 30 30">
+        <g
+          fill="var(--fill, none)"
+          stroke="var(--stroke, var(--line-color, currentColor))"
+          stroke-width="var(--line-weight)"
+          stroke-linecap="var(--line-cap)"
+          stroke-linejoin="var(--line-join)"
+          stroke-dasharray="var(--dash-array)"
+          stroke-dashoffset="var(--dash-offset)"
+          style="cursor: var(--cursor);"
+        >
+          <!-- Center circle -->
+          <circle
+            cx="12"
+            cy="12"
+            r="4"
+            pathLength="1"
+            style="
+              --path-index: 0;
+              transition: stroke-dashoffset var(--transition-duration) var(--transition-timing);
+              transition-delay: calc(var(--transition-delay) + var(--stagger-amount, 0s) * var(--path-index));
+            "
+          />
+          <!-- Ray 1: top -->
+          <path
+            pathLength="1"
+            style="
+              --path-index: 1;
+              transition: stroke-dashoffset var(--transition-duration) var(--transition-timing);
+              transition-delay: calc(var(--transition-delay) + var(--stagger-amount, 0s) * var(--path-index));
+            "
+            d="M12 2 L12 6"
+          />
+          <!-- Ray 2: top-right -->
+          <path
+            pathLength="1"
+            style="
+              --path-index: 2;
+              transition: stroke-dashoffset var(--transition-duration) var(--transition-timing);
+              transition-delay: calc(var(--transition-delay) + var(--stagger-amount, 0s) * var(--path-index));
+            "
+            d="M18 6 L20.5 3.5"
+          />
+          <!-- Ray 3: right -->
+          <path
+            pathLength="1"
+            style="
+              --path-index: 3;
+              transition: stroke-dashoffset var(--transition-duration) var(--transition-timing);
+              transition-delay: calc(var(--transition-delay) + var(--stagger-amount, 0s) * var(--path-index));
+            "
+            d="M22 12 L18 12"
+          />
+          <!-- Ray 4: bottom-right -->
+          <path
+            pathLength="1"
+            style="
+              --path-index: 4;
+              transition: stroke-dashoffset var(--transition-duration) var(--transition-timing);
+              transition-delay: calc(var(--transition-delay) + var(--stagger-amount, 0s) * var(--path-index));
+            "
+            d="M20.5 20.5 L18 18"
+          />
+          <!-- Ray 5: bottom -->
+          <path
+            pathLength="1"
+            style="
+              --path-index: 5;
+              transition: stroke-dashoffset var(--transition-duration) var(--transition-timing);
+              transition-delay: calc(var(--transition-delay) + var(--stagger-amount, 0s) * var(--path-index));
+            "
+            d="M12 22 L12 18"
+          />
+          <!-- Ray 6: bottom-left -->
+          <path
+            pathLength="1"
+            style="
+              --path-index: 6;
+              transition: stroke-dashoffset var(--transition-duration) var(--transition-timing);
+              transition-delay: calc(var(--transition-delay) + var(--stagger-amount, 0s) * var(--path-index));
+            "
+            d="M3.5 20.5 L6 18"
+          />
+          <!-- Ray 7: left -->
+          <path
+            pathLength="1"
+            style="
+              --path-index: 7;
+              transition: stroke-dashoffset var(--transition-duration) var(--transition-timing);
+              transition-delay: calc(var(--transition-delay) + var(--stagger-amount, 0s) * var(--path-index));
+            "
+            d="M2 12 L6 12"
+          />
+          <!-- Ray 8: top-left -->
+          <path
+            pathLength="1"
+            style="
+              --path-index: 8;
+              transition: stroke-dashoffset var(--transition-duration) var(--transition-timing);
+              transition-delay: calc(var(--transition-delay) + var(--stagger-amount, 0s) * var(--path-index));
+            "
+            d="M3.5 3.5 L6 6"
+          />
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- STAR ICON with three stacked layers -->
+  <div class="icon-group">
+    <h2>Star Icon</h2>
+    <svg class="icon" viewBox="0 0 24 24" style="--size: 240px">
+      <use
+        href="#icon-star"
+        class="fx icon-bg"
+        style="
+          --line-weight: 6;
+          opacity: .35;
+          filter: url(#glow-2);
+          --transition-duration: 2.6s;
+        "
+      />
+
+      <use
+        href="#icon-star"
+        class="icon-pg"
+        style="
+          --line-weight: 3;
+          opacity: .5;
+          --transition-duration: 1.6s;
+          --transition-delay: 1s;
+          --stagger-amount: 0.1s;
+        "
+      />
+
+      <use
+        href="#icon-star"
+        class="fx icon-fg"
+        style="
+          --line-weight: 1;
+          opacity: 1;
+          --transition-duration: 0.6s;
+          --transition-delay: 2s;
+          --stagger-amount: 0.05s;
+        "
+      />
+    </svg>
+  </div>
+
+  <!-- SUN RAYS ICON with three stacked layers -->
+  <div class="icon-group">
+    <h2>Sun Rays Icon</h2>
+    <svg class="icon" viewBox="0 0 24 24" style="--size: 240px; color: #ffb84d">
+      <use
+        href="#icon-sun-rays"
+        class="icon-bg"
+        style="
+          --line-weight: 5;
+          opacity: .3;
+          filter: url(#glow-2);
+          --transition-duration: 3s;
+        "
+      />
+
+      <use
+        href="#icon-sun-rays"
+        class="fx icon-pg"
+        style="
+          --line-weight: 2.5;
+          opacity: .6;
+          --transition-duration: 1.8s;
+          --transition-delay: 0.8s;
+          --stagger-amount: 0.08s;
+        "
+      />
+
+      <use
+        href="#icon-sun-rays"
+        class="fx icon-fg"
+        style="
+          --line-weight: 1;
+          opacity: 1;
+          --transition-duration: 0.8s;
+          --transition-delay: 1.8s;
+          --stagger-amount: 0.06s;
+        "
+      />
+    </svg>
+  </div>
+
+</div>
+</body>
+</html>
