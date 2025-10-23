@@ -1,0 +1,35 @@
+{
+  "name": "@orb-zone/nova-icon",
+  "version": "0.1.0",
+  "description": "A reusable web-component for animated SVG icons compatible with Nova Design System.",
+  "main": "dist/nova-icon.js",
+  "module": "dist/nova-icon.js",
+  "types": "dist/nova-icon.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "bun build src/nova-icon.ts --outdir dist --format esm --target browser",
+    "dev": "bun build src/nova-icon.ts --outdir dist --format esm --target browser --watch",
+    "test": "bun test"
+  },
+  "keywords": [
+    "web-component",
+    "svg",
+    "animation",
+    "nova",
+    "icon"
+  ],
+  "author": "Orb Zone",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4"
+  },
+  "files": [
+    "dist",
+    "assets",
+    "README.md"
+  ]
+}
