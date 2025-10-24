@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaIcon E2E Test Page</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 2rem;
+      background: #f5f5f5;
+    }
+    
+    .test-section {
+      background: white;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .icon-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+    }
+    
+    .icon-label {
+      font-size: 0.875rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>NovaIcon E2E Test Page</h1>
+  
+  <div class="test-section">
+    <h2>Basic Icon Rendering</h2>
+    <div class="icon-grid">
+      <div class="icon-container">
+        <nova-icon id="basic-icon" icon="test-basic" size="48px"></nova-icon>
+        <span class="icon-label">Basic Icon</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>Size Variations</h2>
+    <div class="icon-grid">
+      <div class="icon-container">
+        <nova-icon id="small-icon" icon="test-basic" size="24px"></nova-icon>
+        <span class="icon-label">Small (24px)</span>
+      </div>
+      <div class="icon-container">
+        <nova-icon id="medium-icon" icon="test-basic" size="48px"></nova-icon>
+        <span class="icon-label">Medium (48px)</span>
+      </div>
+      <div class="icon-container">
+        <nova-icon id="large-icon" icon="test-basic" size="96px"></nova-icon>
+        <span class="icon-label">Large (96px)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>Color Variations</h2>
+    <div class="icon-grid">
+      <div class="icon-container">
+        <nova-icon id="red-icon" icon="test-basic" size="48px" color="red"></nova-icon>
+        <span class="icon-label">Red</span>
+      </div>
+      <div class="icon-container">
+        <nova-icon id="blue-icon" icon="test-basic" size="48px" color="blue"></nova-icon>
+        <span class="icon-label">Blue</span>
+      </div>
+      <div class="icon-container">
+        <nova-icon id="green-icon" icon="test-basic" size="48px" color="green"></nova-icon>
+        <span class="icon-label">Green</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>Animated Icon</h2>
+    <div class="icon-grid">
+      <div class="icon-container">
+        <nova-icon id="animated-icon" icon="test-animated" size="64px"></nova-icon>
+        <span class="icon-label">Hover to animate</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>Accessibility Test</h2>
+    <div class="icon-grid">
+      <div class="icon-container">
+        <nova-icon 
+          id="accessible-icon" 
+          icon="test-basic" 
+          size="48px"
+          aria-label="Test icon for accessibility"
+        ></nova-icon>
+        <span class="icon-label">With ARIA label</span>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import '../../dist/nova-icon.js';
+
+    NovaIcon.register('test-basic', 'M10 10 L90 90 M90 10 L10 90', {
+      viewBox: '0 0 100 100'
+    });
+
+    NovaIcon.register('test-animated', 
+      '<path d="M50 10 L90 90 L10 90 Z" stroke="currentColor" fill="none" stroke-width="2" pathLength="1" style="stroke-dasharray: 1 0; stroke-dashoffset: 0; transition: stroke-dashoffset 0.6s ease;" />',
+      {
+        viewBox: '0 0 100 100'
+      }
+    );
+  </script>
+</body>
+</html>

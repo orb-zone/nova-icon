@@ -29,3 +29,48 @@ NovaIcon.register('custom', 'M10 10 L20 20');
 ```
 
 For more examples, see [quickstart.md](specs/001-package-setup/quickstart.md).
+
+## Development Setup
+
+### MCP Server Configuration (Optional)
+
+This project supports [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers for enhanced AI assistant capabilities. If you're using an AI assistant that supports MCP:
+
+1. **Copy the example configuration:**
+   ```bash
+   cp .mcp.json.example .mcp.json
+   ```
+
+2. **Update the paths** in `.mcp.json` to your local repository path:
+   ```json
+   {
+     "mcpServers": {
+       "filesystem": {
+         "args": ["-y", "@modelcontextprotocol/server-filesystem", "/your/path/to/nova-icon"]
+       },
+       "git": {
+         "args": ["-y", "@modelcontextprotocol/server-git", "--repository", "/your/path/to/nova-icon"]
+       }
+     }
+   }
+   ```
+
+3. **Configured servers:**
+   - **Playwright**: Browser automation for E2E testing
+   - **Filesystem**: Enhanced file operations
+   - **Git**: Repository inspection
+
+See [MCP_SETUP.md](MCP_SETUP.md) for detailed information.
+
+### Running Tests
+
+**Integration tests** (fast, mocked DOM):
+```bash
+bun test
+```
+
+**E2E tests** (real browsers):
+```bash
+bun run build        # Build first
+npm run test:e2e     # Run E2E tests
+```

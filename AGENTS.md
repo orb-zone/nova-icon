@@ -12,12 +12,37 @@ Auto-generated from all feature plans. Last updated: 2025-10-23
 
 ```text
 src/
+  runtime/          - Registry and validation logic
+  types/            - TypeScript type definitions
+  nova-icon.ts      - Main web component
 tests/
+  unit/             - Unit tests (mocked, fast)
+  integration/      - Integration tests (mocked DOM, run on MRs)
+  contract/         - API contract tests
+  e2e/              - End-to-end tests (real browsers, run on releases)
+    fixtures/       - HTML test fixtures
+contracts/          - JSON schemas
+specs/              - Feature specifications
 ```
 
 ## Commands
 
-npm test && npm run lint
+**Unit & Integration Tests (run on MRs):**
+```bash
+bun test
+```
+
+**E2E Tests (run on tagged releases):**
+```bash
+npm run test:e2e           # Run in headless mode
+npm run test:e2e:ui        # Run with Playwright UI
+npm run test:e2e:headed    # Run in headed mode for debugging
+```
+
+**Build:**
+```bash
+bun run build
+```
 
 ## Code Style
 
@@ -60,5 +85,60 @@ Based on proof-of-concept research in svg-icon-deep-dive.md, follow these guidel
 - Set `overflow: visible` on icon SVGs to prevent clipping.
 
 For full implementation details, refer to svg-icon-deep-dive.md.
+
+## MCP Servers
+
+This project is configured with Model Context Protocol (MCP) servers to enhance AI assistant capabilities. The configuration is in `.mcp.json` at the project root.
+
+### Available MCP Servers
+
+**Playwright MCP Server** (`@executeautomation/playwright-mcp-server`)
+- **Purpose**: Browser automation for real end-to-end testing
+- **Use Cases**:
+  - Run e2e tests in actual browsers (Chromium, Firefox, WebKit)
+  - Verify visual rendering of web components
+  - Test animations and interactions in real DOM environments
+  - Capture screenshots and debug rendering issues
+  - Validate accessibility features in real browsers
+
+**Filesystem MCP Server** (`@modelcontextprotocol/server-filesystem`)
+- **Purpose**: Enhanced file system operations and inspection
+- **Use Cases**:
+  - Efficient file reading and writing
+  - Directory traversal and search
+  - File metadata inspection
+  - Batch file operations
+
+**Git MCP Server** (`@modelcontextprotocol/server-git`)
+- **Purpose**: Repository operations and version control inspection
+- **Use Cases**:
+  - Query git history and commits
+  - Inspect diffs and changes
+  - Navigate branches and tags
+  - Understand code evolution
+
+### Testing Strategy
+
+**Integration Tests** (mocked DOM, fast):
+- Run on every merge request
+- Use Bun's test runner with mocked DOM environment
+- Located in `tests/unit/`, `tests/integration/`, `tests/contract/`
+- Command: `bun test`
+
+**E2E Tests** (real browsers, comprehensive):
+- Run on tagged releases only
+- Use Playwright with system browsers
+- Test actual rendering, animations, and interactions
+- Located in `tests/e2e/`
+- Commands: `npm run test:e2e`, `npm run test:e2e:ui`, `npm run test:e2e:headed`
+
+### For AI Assistants
+
+When working on this project:
+1. Use **integration tests** for quick validation during development
+2. Use **e2e tests** via Playwright MCP for visual/rendering verification
+3. Leverage **filesystem MCP** for efficient code exploration
+4. Use **git MCP** to understand code history and recent changes
+5. Always run `bun test` before suggesting e2e test runs
 
 <!-- MANUAL ADDITIONS END -->

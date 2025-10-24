@@ -38,3 +38,11 @@ Thumbs.db
 *.tmp
 *.swp
 .vscode/
+
+# Playwright
+playwright-report/
+test-results/
+playwright/.cache/
+
+# MCP configuration (machine-specific)
+.mcp.json
