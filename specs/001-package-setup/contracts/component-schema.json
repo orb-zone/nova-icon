@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nova-icon.orb.zone/schema/config.json",
+  "title": "Nova Icon Configuration",
+  "description": "Configuration schema for nova-icon definitions supporting build-time and runtime icon registration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["icons"],
+  "properties": {
+    "icons": {
+      "type": "object",
+      "description": "Dictionary of icon definitions keyed by kebab-case name",
+      "patternProperties": {
+        "^[a-z][a-z0-9-]*$": {
+          "$ref": "#/$defs/icon"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "icon": {
+      "type": "object",
+      "description": "Single icon definition with paths and optional layer configurations",
+      "required": ["paths"],
+      "additionalProperties": false,
+      "properties": {
+        "paths": {
+          "type": "array",
+          "description": "Array of SVG path data strings (one per layer)",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "description": "Valid SVG path data (e.g., 'M10 10 L20 20')"
+          },
+          "examples": [
+            ["M5 12h14", "M12 5l7 7-7 7"]
+          ]
+        },
+        "viewBox": {
+          "type": "string",
+          "description": "SVG viewBox attribute (x y width height)",
+          "default": "0 0 24 24",
+          "pattern": "^-?\\d+(\\.\\d+)?\\s+-?\\d+(\\.\\d+)?\\s+\\d+(\\.\\d+)?\\s+\\d+(\\.\\d+)?$",
+          "examples": ["0 0 24 24", "0 0 16 16", "-10 -10 20 20"]
+        },
+        "layers": {
+          "type": "array",
+          "description": "Configuration for each animated layer (matches paths array length)",
+          "items": {
+            "$ref": "#/$defs/layer"
+          },
+          "examples": [
+            [
+              { "weight": 1, "duration": 300 },
+              { "weight": 2, "duration": 400, "stagger": 100 }
+            ]
+          ]
+        }
+      }
+    },
+    "layer": {
+      "type": "object",
+      "description": "Animation configuration for a single layer",
+      "additionalProperties": false,
+      "properties": {
+        "weight": {
+          "type": "number",
+          "description": "Stroke weight multiplier (relative to base stroke width)",
+          "minimum": 0.1,
+          "default": 1,
+          "examples": [0.5, 1, 1.5, 2]
+        },
+        "opacity": {
+          "type": "number",
+          "description": "Layer opacity (0 = transparent, 1 = opaque)",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 1,
+          "examples": [0.3, 0.5, 0.8, 1]
+        },
+        "duration": {
+          "type": "number",
+          "description": "Animation duration in milliseconds",
+          "minimum": 0,
+          "default": 300,
+          "examples": [200, 300, 500, 1000]
+        },
+        "delay": {
+          "type": "number",
+          "description": "Animation start delay in milliseconds",
+          "minimum": 0,
+          "default": 0,
+          "examples": [0, 100, 200, 500]
+        },
+        "stagger": {
+          "type": "number",
+          "description": "Stagger delay between paths in layer (milliseconds)",
+          "minimum": 0,
+          "default": 50,
+          "examples": [0, 25, 50, 100]
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "icons": {
+        "arrow-right": {
+          "paths": [
+            "M5 12h14",
+            "M12 5l7 7-7 7"
+          ],
+          "viewBox": "0 0 24 24",
+          "layers": [
+            { "weight": 1, "duration": 300 },
+            { "weight": 2, "duration": 400, "stagger": 100 }
+          ]
+        },
+        "check-circle": {
+          "paths": [
+            "M22 11.08V12a10 10 0 1 1-5.93-9.14",
+            "M22 4L12 14.01l-3-3"
+          ],
+          "viewBox": "0 0 24 24"
+        }
+      }
+    }
+  ]
+}

@@ -8,8 +8,8 @@ The web-component will encapsulate the layered SVG stroke-dash animation system,
 
 ## Phase 1: Package Setup and Structure
 
-- [ ] Initialize Bun package: Run `bun init` in the project directory to create `package.json`, basic structure, and entry points.
-- [ ] Update `package.json`:
+- [x] Initialize Bun package: Run `bun init` in the project directory to create `package.json`, basic structure, and entry points.
+- [x] Update `package.json`:
   - Set name to `@orb-zone/nova-icon`.
   - Add description: "A reusable web-component for animated SVG icons compatible with Nova Design System."
   - Specify main entry point (e.g., `dist/nova-icon.js`).
@@ -17,13 +17,13 @@ The web-component will encapsulate the layered SVG stroke-dash animation system,
   - Include dependencies: None required for core functionality; optional peer dependencies for Tailwind integration (e.g., `tailwindcss` as peer dep).
   - Add keywords: "web-component", "svg", "animation", "nova", "icon".
   - Set license (e.g., MIT).
-- [ ] Create directory structure:
+- [x] Create directory structure:
   - `src/`: Source code (e.g., `nova-icon.ts` for the web-component).
   - `dist/`: Build output.
   - `assets/`: SVG symbols, filters, and any static assets (e.g., `icons.svg` for symbol definitions).
   - `tests/`: Unit tests for the component.
   - `docs/`: Documentation and examples.
-- [ ] Set up build configuration: Use Bun's bundler or a tool like Rollup/Vite to bundle the TypeScript into a single JS file for distribution.
+- [x] Set up build configuration: Use Bun's bundler or a tool like Rollup/Vite to bundle the TypeScript into a single JS file for distribution.
 
 ---
 
@@ -88,7 +88,7 @@ The web-component will encapsulate the layered SVG stroke-dash animation system,
   - Usage examples with and without Nova.
   - API documentation for attributes and CSS variables.
   - Link to Nova Web Components docs for integration guidance.
-- [ ] Publish to npm: Run `bun run build`, then `npm publish` (ensure package is scoped correctly).
+- [ ] Publish to JSR.io: Run `bun run build`, then `jsr publish` (ensure package is scoped correctly to @orb-zone).
 
 ---
 
