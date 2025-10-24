@@ -12,7 +12,10 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
-    "noEmit": true,
+    "resolveJsonModule": true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationDir": "dist",
 
     // Best practices
     "strict": true,

@@ -1,0 +1,9 @@
+{
+  "name": "@orb-zone/nova-icon",
+  "version": "0.1.0",
+  "exports": {
+    ".": "./src/nova-icon.ts",
+    "./cli": "./src/cli/process-svg.ts",
+    "./schema": "./contracts/component-schema.json"
+  }
+}
