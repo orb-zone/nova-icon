@@ -489,7 +489,7 @@ svg.icon {
 
 ## Part 3: Complete Working Example Analysis
 
-### example.html: Working Implementation with Two Icons (✓ CORRECT)
+### concept-example.html: Working Implementation with Two Icons (✓ CORRECT)
 
 This example demonstrates the correct pattern with real, working code:
 
@@ -1124,7 +1124,7 @@ svg.icon {
 
 ## Implementation Checklist for Vue3 Component Migration
 
-**Reference Implementation:** [example.html](./example.html) - Contains working examples of both star and sun-rays icons with correct variable naming and patterns.
+**Reference Implementation:** [concept-example.html](./concept-example.html) - Contains working examples of both star and sun-rays icons with correct variable naming and patterns.
 
 - [ ] Extract symbol definitions into Vue template (or maintain in separate SVG defs string)
 - [ ] Create component props for:
@@ -1168,9 +1168,9 @@ svg.icon {
 - **Nova Web Components:** https://nova.eliagroup.io/latest/getting-started/developers/frameworks/web-components-iAGHLFf7 – For theming integration using CSS variables and Tailwind CSS
 - **Tailwind CSS:** Utility-first framework for consistent styling and design system compatibility
 
-## Updates from example.html Proof of Concept
+## Updates from concept-example.html Proof of Concept
 
-This section documents improvements made during the example.html implementation that refined the original plan:
+This section documents improvements made during the concept-example.html implementation that refined the original plan:
 
 ### Variable Naming Improvements
 

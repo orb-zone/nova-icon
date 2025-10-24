@@ -32,7 +32,7 @@ TypeScript 5: Follow standard conventions
 
 ## SVG Animation Best Practices
 
-Based on proof-of-concept research in AGENT.md, follow these guidelines for implementing animated SVG icons in nova-icon:
+Based on proof-of-concept research in svg-icon-deep-dive.md, follow these guidelines for implementing animated SVG icons in nova-icon:
 
 ### Core Animation Pattern
 - Use CSS custom properties on `<use>` elements to trigger animations via hover.
@@ -59,6 +59,6 @@ Based on proof-of-concept research in AGENT.md, follow these guidelines for impl
 - Always use `stroke-dasharray="1 0"` for continuous lines.
 - Set `overflow: visible` on icon SVGs to prevent clipping.
 
-For full implementation details, refer to AGENT.md.
+For full implementation details, refer to svg-icon-deep-dive.md.
 
 <!-- MANUAL ADDITIONS END -->
