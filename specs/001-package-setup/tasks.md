@@ -158,17 +158,17 @@ Repository root structure (single project):
 
 **Purpose**: Build scripts and type generation
 
-- [ ] T052 Configure Bun build command for ESM output in package.json scripts (--format esm --packages external)
-- [ ] T053 Configure TypeScript compiler for declaration generation in package.json scripts (tsc --emitDeclarationOnly)
-- [ ] T054 Test build:bundle script produces dist/nova-icon.js
-- [ ] T055 Test build:cli script produces dist/cli.js with shebang
-- [ ] T056 Test build:types script produces dist/nova-icon.d.ts
-- [ ] T057 Test full build script runs all sub-builds successfully
-- [ ] T058 Verify dist/ output includes only necessary files per package.json files whitelist
+- [X] T052 Configure Bun build command for ESM output in package.json scripts (--format esm --packages external)
+- [X] T053 Configure TypeScript compiler for declaration generation in package.json scripts (tsc --emitDeclarationOnly)
+- [X] T054 Test build:bundle script produces dist/nova-icon.js
+- [X] T055 Test build:cli script produces dist/cli.js with shebang
+- [X] T056 Test build:types script produces dist/nova-icon.d.ts
+- [X] T057 Test full build script runs all sub-builds successfully
+- [X] T058 Verify dist/ output includes only necessary files per package.json files whitelist
 
 **Independent Test**: Run `bun run build`, verify all outputs in dist/ directory
 
-**Checkpoint**: Build system validated
+**Checkpoint**: Build system validated ✅
 
 ---
 

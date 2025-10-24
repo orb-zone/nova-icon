@@ -8,16 +8,11 @@
   "type": "module",
   "exports": {
     ".": "./src/nova-icon.ts",
-    "./cli": "./src/cli/process-svg.ts",
     "./schema": "./contracts/component-schema.json"
   },
-  "bin": {
-    "nova-icon": "./src/cli/process-svg.ts"
-  },
   "scripts": {
-    "build": "bun run build:bundle && bun run build:cli && bun run build:types",
-    "build:bundle": "bun build ./src/nova-icon.ts --outfile ./dist/nova-icon.js --format esm --packages external --sourcemap external",
-    "build:cli": "bun build ./src/cli/process-svg.ts --outfile ./dist/cli.js --format esm --packages external",
+    "build": "rm -rf dist && bun run build:bundle && bun run build:types",
+    "build:bundle": "bun build ./src/nova-icon.ts --outdir ./dist --format esm --packages external --target browser",
     "build:types": "tsc --emitDeclarationOnly",
     "dev": "bun build src/nova-icon.ts --outdir dist --format esm --target browser --watch",
     "test": "bun test"
