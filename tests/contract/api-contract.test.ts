@@ -1,10 +1,55 @@
-import { describe, it, expect, beforeEach } from 'bun:test';
+import { describe, it, expect, beforeEach, afterEach } from 'bun:test';
 
 describe('NovaIcon.register() API Contract', () => {
+  let originalDocument: any;
+  
   beforeEach(() => {
-    if (typeof document !== 'undefined') {
-      document.body.innerHTML = '';
-    }
+    originalDocument = global.document;
+    
+    const elements: any[] = [];
+    const mockDocument: any = {
+      body: {
+        insertBefore: (el: any) => {
+          elements.push(el);
+          return el;
+        },
+        firstChild: null,
+      },
+      createElementNS: (ns: string, tag: string) => {
+        const el: any = {
+          id: '',
+          tagName: tag.toUpperCase(),
+          style: {},
+          innerHTML: '',
+          setAttribute: function(name: string, value: string) { 
+            (this as any)[name] = value; 
+          },
+          appendChild: function(child: any) { 
+            elements.push(child);
+            return child;
+          },
+          querySelector: function(selector: string) {
+            return elements.find(e => {
+              if (selector.startsWith('#')) {
+                return e.id === selector.slice(1);
+              }
+              return false;
+            });
+          },
+          remove: function() {
+            const idx = elements.indexOf(this);
+            if (idx > -1) elements.splice(idx, 1);
+          },
+        };
+        return el;
+      },
+    };
+    
+    (global as any).document = mockDocument;
+  });
+
+  afterEach(() => {
+    (global as any).document = originalDocument;
   });
 
   it('should have static register method', () => {
