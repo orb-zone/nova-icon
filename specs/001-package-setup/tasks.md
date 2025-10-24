@@ -26,14 +26,14 @@ Repository root structure (single project):
 
 **Purpose**: Initialize package structure and configuration files for JSR.io distribution
 
-- [ ] T001 Update package.json with JSR.io publishing configuration (exports, "type": "module", files whitelist)
-- [ ] T002 Create jsr.json configuration file for JSR.io publishing with proper exports mapping
-- [ ] T003 [P] Update tsconfig.json for declaration file generation (emitDeclarationOnly, declarationDir)
-- [ ] T004 [P] Install runtime dependencies: ajv, ajv-formats, cac, linkedom, svgo in package.json
-- [ ] T005 [P] Add build scripts to package.json: build, build:bundle, build:cli, build:types
-- [ ] T006 [P] Create README.md with JSR.io installation instructions and quickstart examples
+- [X] T001 Update package.json with JSR.io publishing configuration (exports, "type": "module", files whitelist)
+- [X] T002 Create jsr.json configuration file for JSR.io publishing with proper exports mapping
+- [X] T003 [P] Update tsconfig.json for declaration file generation (emitDeclarationOnly, declarationDir)
+- [X] T004 [P] Install runtime dependencies: ajv, ajv-formats, cac, linkedom, svgo in package.json
+- [X] T005 [P] Add build scripts to package.json: build, build:bundle, build:cli, build:types
+- [X] T006 [P] Create README.md with JSR.io installation instructions and quickstart examples
 
-**Checkpoint**: Foundation ready - package configuration complete
+**Checkpoint**: Foundation ready - package configuration complete ✅
 
 ---
 
@@ -45,18 +45,18 @@ Repository root structure (single project):
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T007 [P] Contract test for JSON Schema validation in tests/contract/config-schema.test.ts
-- [ ] T008 [P] Unit test for schema validation (valid configs) in tests/unit/schema-validation.test.ts
-- [ ] T009 [P] Unit test for schema validation (invalid configs) in tests/unit/schema-validation-errors.test.ts
+- [X] T007 [P] Contract test for JSON Schema validation in tests/contract/config-schema.test.ts
+- [X] T008 [P] Unit test for schema validation (valid configs) in tests/unit/schema-validation.test.ts
+- [X] T009 [P] Unit test for schema validation (invalid configs) in tests/unit/schema-validation-errors.test.ts
 
 ### Implementation for Configuration Schema
 
-- [ ] T010 [P] Create TypeScript types from data-model.md in src/types/index.d.ts (IconDefinition, LayerConfig, IconConfig, IconEntry)
-- [ ] T011 Implement schema validation module in src/runtime/validator.ts using Ajv v8
+- [X] T010 [P] Create TypeScript types from data-model.md in src/types/index.d.ts (IconDefinition, LayerConfig, IconConfig, IconEntry)
+- [X] T011 Implement schema validation module in src/runtime/validator.ts using Ajv v8
 
 **Independent Test**: Load example config, validate with schema, should pass/fail as expected
 
-**Checkpoint**: Configuration schema validated and working
+**Checkpoint**: Configuration schema validated and working ✅
 
 ---
 
@@ -68,23 +68,23 @@ Repository root structure (single project):
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T012 [P] Contract test for NovaIcon.register() API in tests/contract/api-contract.test.ts
-- [ ] T013 [P] Integration test for singleton defs container creation in tests/integration/runtime.test.ts
-- [ ] T014 [P] Unit test for registry operations (register, get, has) in tests/unit/registry.test.ts
-- [ ] T015 [P] Unit test for duplicate icon handling in tests/unit/registry-duplicates.test.ts
-- [ ] T016 [P] Unit test for batch registration in tests/unit/registry-batch.test.ts
+- [X] T012 [P] Contract test for NovaIcon.register() API in tests/contract/api-contract.test.ts
+- [X] T013 [P] Integration test for singleton defs container creation in tests/integration/runtime.test.ts
+- [X] T014 [P] Unit test for registry operations (register, get, has) in tests/unit/registry.test.ts
+- [X] T015 [P] Unit test for duplicate icon handling in tests/unit/registry-duplicates.test.ts
+- [X] T016 [P] Unit test for batch registration in tests/unit/registry-batch.test.ts
 
 ### Implementation for Runtime Registration API
 
-- [ ] T017 Create runtime registry module in src/runtime/registry.ts (static methods, Map storage)
-- [ ] T018 Implement getDefsContainer() method for singleton <svg><defs> management in src/runtime/registry.ts
-- [ ] T019 Implement register() method with duplicate checking in src/runtime/registry.ts
-- [ ] T020 Implement registerBatch() method with fragment optimization in src/runtime/registry.ts
-- [ ] T021 [P] Implement get() and has() helper methods in src/runtime/registry.ts
+- [X] T017 Create runtime registry module in src/runtime/registry.ts (static methods, Map storage)
+- [X] T018 Implement getDefsContainer() method for singleton <svg><defs> management in src/runtime/registry.ts
+- [X] T019 Implement register() method with duplicate checking in src/runtime/registry.ts
+- [X] T020 Implement registerBatch() method with fragment optimization in src/runtime/registry.ts
+- [X] T021 [P] Implement get() and has() helper methods in src/runtime/registry.ts
 
 **Independent Test**: Register icons at runtime, verify <defs> container created, symbols accessible
 
-**Checkpoint**: Runtime registration API complete and tested
+**Checkpoint**: Runtime registration API complete and tested ✅
 
 ---
 

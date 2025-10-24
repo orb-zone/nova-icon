@@ -1,0 +1,78 @@
+{
+  "$id": "https://nova-icon.orb.zone/schema/config.json",
+  "title": "Nova Icon Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "icons": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z][a-z0-9-]*$": {
+          "$ref": "#/$defs/icon"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["icons"],
+  "$defs": {
+    "icon": {
+      "type": "object",
+      "required": ["paths"],
+      "additionalProperties": false,
+      "properties": {
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "description": "SVG path data for icon layers"
+        },
+        "viewBox": {
+          "type": "string",
+          "default": "0 0 24 24",
+          "pattern": "^-?\\d+(\\.\\d+)?\\s+-?\\d+(\\.\\d+)?\\s+\\d+(\\.\\d+)?\\s+\\d+(\\.\\d+)?$"
+        },
+        "layers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/layer"
+          }
+        }
+      }
+    },
+    "layer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "weight": {
+          "type": "number",
+          "minimum": 0.1,
+          "default": 1
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 1
+        },
+        "duration": {
+          "type": "number",
+          "minimum": 0,
+          "default": 300
+        },
+        "delay": {
+          "type": "number",
+          "minimum": 0,
+          "default": 0
+        },
+        "stagger": {
+          "type": "number",
+          "minimum": 0,
+          "default": 50
+        }
+      }
+    }
+  }
+}
