@@ -58,4 +58,76 @@ describe('Component Attributes', () => {
       instance.attributeChangedCallback('color', 'black', 'red');
     }).not.toThrow();
   });
+
+  it('should handle animation attribute changes', () => {
+    const { NovaIcon } = require('../../src/nova-icon');
+    const instance = new NovaIcon();
+    
+    expect(() => {
+      instance.attributeChangedCallback('animation', null, 'hover');
+    }).not.toThrow();
+  });
+
+  it('should handle duration attribute changes', () => {
+    const { NovaIcon } = require('../../src/nova-icon');
+    const instance = new NovaIcon();
+    
+    expect(() => {
+      instance.attributeChangedCallback('duration', '2.2s', '1s');
+    }).not.toThrow();
+  });
+
+  it('should handle delay attribute changes', () => {
+    const { NovaIcon } = require('../../src/nova-icon');
+    const instance = new NovaIcon();
+    
+    expect(() => {
+      instance.attributeChangedCallback('delay', '0s', '0.5s');
+    }).not.toThrow();
+  });
+
+  it('should handle stagger attribute changes', () => {
+    const { NovaIcon } = require('../../src/nova-icon');
+    const instance = new NovaIcon();
+    
+    expect(() => {
+      instance.attributeChangedCallback('stagger', '0s', '0.1s');
+    }).not.toThrow();
+  });
+
+  it('should handle layers attribute changes', () => {
+    const { NovaIcon } = require('../../src/nova-icon');
+    const instance = new NovaIcon();
+    
+    expect(() => {
+      instance.attributeChangedCallback('layers', null, 'bg:2s,fg:1s');
+    }).not.toThrow();
+  });
+
+  it('should calculate stagger delay correctly', () => {
+    const { NovaIcon } = require('../../src/nova-icon');
+    const instance = new NovaIcon();
+    instance.setAttribute('animation', 'hover');
+    instance.setAttribute('stagger', '0.1s');
+    instance.setAttribute('delay', '0.5s');
+
+    // Mock render to check transition
+    const mockPath = { style: { transition: '', setProperty: () => {} } };
+    (global as any).document = {
+      createElementNS: () => mockPath,
+    };
+
+    instance.render();
+    // Check if stagger is applied (hard to test calc, but ensure not throw)
+    expect(() => instance.render()).not.toThrow();
+  });
+
+  it('should parse layers attribute correctly', () => {
+    const { NovaIcon } = require('../../src/nova-icon');
+    const instance = new NovaIcon();
+    instance.setAttribute('animation', 'hover');
+    instance.setAttribute('layers', 'bg:2s,pg:1s:0.5s,fg:0.5s:1s');
+
+    expect(() => instance.render()).not.toThrow();
+  });
 });

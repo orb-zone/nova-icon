@@ -22,8 +22,8 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Update dependencies for animation support in package.json
-- [ ] T002 [P] Configure CSS custom properties for animations in src/nova-icon.ts
+- [x] T001 Update dependencies for animation support in package.json
+- [x] T002 [P] Configure CSS custom properties for animations in src/nova-icon.ts
 
 ---
 
@@ -33,9 +33,9 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T003 Add base animation attributes to NovaIcon component in src/nova-icon.ts
-- [ ] T004 [P] Implement path normalization (pathLength="1") in src/nova-icon.ts
-- [ ] T005 [P] Add inline transition styles for paths in src/nova-icon.ts
+- [x] T003 Add base animation attributes to NovaIcon component in src/nova-icon.ts
+- [x] T004 [P] Implement path normalization (pathLength="1") in src/nova-icon.ts
+- [x] T005 [P] Add inline transition styles for paths in src/nova-icon.ts
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -51,15 +51,13 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T006 [P] [US1] Unit test for hover animation trigger in tests/unit/component-attributes.test.ts
-- [ ] T007 [P] [US1] Integration test for path animation in tests/integration/component-animation.test.ts
+- [x] T006 [P] [US1] Unit test for hover animation trigger in tests/unit/component-attributes.test.ts
+- [x] T007 [P] [US1] Integration test for path animation in tests/integration/component-animation.test.ts
 
-### Implementation for User Story 1
-
-- [ ] T008 [P] [US1] Implement hover event listener in src/nova-icon.ts
-- [ ] T009 [US1] Add stroke-dasharray and stroke-dashoffset logic in src/nova-icon.ts
-- [ ] T010 [US1] Implement prefers-reduced-motion check in src/nova-icon.ts
-- [ ] T011 [US1] Add default duration and delay handling in src/nova-icon.ts
+- [x] T008 [P] [US1] Implement hover event listener in src/nova-icon.ts
+- [x] T009 [US1] Add stroke-dasharray and stroke-dashoffset logic in src/nova-icon.ts
+- [x] T010 [US1] Implement prefers-reduced-motion check in src/nova-icon.ts
+- [x] T011 [US1] Add default duration and delay handling in src/nova-icon.ts
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -73,15 +71,13 @@
 
 ### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
 
-- [ ] T012 [P] [US2] Unit test for stagger calculation in tests/unit/component-attributes.test.ts
-- [ ] T013 [P] [US2] Integration test for custom timing in tests/integration/component-animation.test.ts
+- [x] T012 [P] [US2] Unit test for stagger calculation in tests/unit/component-attributes.test.ts
+- [x] T013 [P] [US2] Integration test for custom timing in tests/integration/component-animation.test.ts
 
-### Implementation for User Story 2
-
-- [ ] T014 [P] [US2] Parse duration attribute in src/nova-icon.ts
-- [ ] T015 [P] [US2] Parse delay attribute in src/nova-icon.ts
-- [ ] T016 [US2] Implement stagger logic with --path-index in src/nova-icon.ts
-- [ ] T017 [US2] Update transition delays for stagger in src/nova-icon.ts
+- [x] T014 [P] [US2] Parse duration attribute in src/nova-icon.ts
+- [x] T015 [P] [US2] Parse delay attribute in src/nova-icon.ts
+- [x] T016 [US2] Implement stagger logic with --path-index in src/nova-icon.ts
+- [x] T017 [US2] Update transition delays for stagger in src/nova-icon.ts
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -95,15 +91,13 @@
 
 ### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
 
-- [ ] T018 [P] [US3] Unit test for layers parsing in tests/unit/component-attributes.test.ts
-- [ ] T019 [P] [US3] Integration test for multi-layer animation in tests/integration/component-animation.test.ts
+- [x] T018 [P] [US3] Unit test for layers parsing in tests/unit/component-attributes.test.ts
+- [x] T019 [P] [US3] Integration test for multi-layer animation in tests/integration/component-animation.test.ts
 
-### Implementation for User Story 3
-
-- [ ] T020 [P] [US3] Parse layers attribute in src/nova-icon.ts
-- [ ] T021 [US3] Implement layer grouping for paths in src/nova-icon.ts
-- [ ] T022 [US3] Apply different stroke weights and opacities per layer in src/nova-icon.ts
-- [ ] T023 [US3] Handle layer timing independently in src/nova-icon.ts
+- [x] T020 [P] [US3] Parse layers attribute in src/nova-icon.ts
+- [x] T021 [US3] Implement layer grouping for paths in src/nova-icon.ts
+- [x] T022 [US3] Apply different stroke weights and opacities per layer in src/nova-icon.ts
+- [x] T023 [US3] Handle layer timing independently in src/nova-icon.ts
 
 **Checkpoint**: All user stories should now be independently functional
 

@@ -51,6 +51,10 @@ describe('Component Rendering with Registered Icons', () => {
           const svg = this._children.find(c => c.tagName === 'SVG');
           return svg?._children?.find((c: any) => c.tagName === 'USE');
         }
+        if (selector === 'path') {
+          const svg = this._children.find(c => c.tagName === 'SVG');
+          return svg?._children?.find((c: any) => c.tagName === 'PATH');
+        }
         return null;
       }
     }
@@ -88,6 +92,9 @@ describe('Component Rendering with Registered Icons', () => {
           _children: [] as any[],
           setAttribute: function (name: string, value: string) {
             (this as any)[name] = value;
+          },
+          getAttribute: function (name: string) {
+            return (this as any)[name];
           },
           appendChild: function (child: any) {
             this._children.push(child);
@@ -144,10 +151,10 @@ describe('Component Rendering with Registered Icons', () => {
     const svg = instance.querySelector('svg');
     expect(svg).toBeDefined();
     
-    // Light DOM: SVG should contain <use> element referencing shared symbol
-    const use = instance.querySelector('use');
-    expect(use).toBeDefined();
-    expect(use?.href || use?.['xlink:href']).toContain('#test-icon');
+    // Light DOM: SVG should contain <path> elements
+    const path = instance.querySelector('path');
+    expect(path).toBeDefined();
+    expect(path?.getAttribute('d')).toBe('M10 10 L20 20');
   });
 
   it('should support Tailwind utility classes on component element', () => {
