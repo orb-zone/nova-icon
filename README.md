@@ -2,6 +2,13 @@
 
 A reusable web-component for animated SVG icons compatible with Nova Design System.
 
+**✨ Features:**
+- 🚀 **Light DOM Rendering** - No shadow DOM barriers, seamless styling
+- 🎨 **Tailwind Native** - Utility classes work directly on components
+- 🔗 **Efficient Symbol Sharing** - Each icon stored once, referenced N times via `<use>`
+- ♿ **Accessibility First** - Respects `prefers-reduced-motion` automatically
+- 📦 **Zero Dependencies** - Pure Web Components, works everywhere
+
 ## Installation
 
 Install via JSR.io:
@@ -16,19 +23,54 @@ deno add @orb-zone/nova-icon
 
 ## Quickstart
 
-Import and use the web component:
-
 ```typescript
-import '@orb-zone/nova-icon';
+import { NovaIconRegistry } from '@orb-zone/nova-icon';
 
-// Register a custom icon
-NovaIcon.register('custom', 'M10 10 L20 20');
+// Register icons
+NovaIconRegistry.register('star', 
+  '<path d="M12 2 L15 10 L23 10 L17 14 L19 22 L12 18 L5 22 L7 14 L1 10 L9 10 Z"/>',
+  { viewBox: '0 0 24 24' }
+);
 
-// Use in HTML
-<nova-icon icon="custom" size="240px" color="gold"></nova-icon>
+// Use in HTML with Tailwind classes
+<nova-icon icon="star" class="w-8 h-8 text-yellow-500"></nova-icon>
 ```
 
-For more examples, see [quickstart.md](specs/001-package-setup/quickstart.md).
+### Light DOM Architecture
+
+NovaIcon renders directly to **light DOM** (not shadow DOM), which means:
+- ✅ Tailwind CSS utility classes work directly
+- ✅ CSS custom properties inherit naturally
+- ✅ Simpler DevTools inspection
+- ✅ Standard CSS selectors work
+
+**Before (shadow DOM):**
+```html
+<nova-icon icon="star">
+  #shadow-root
+    <svg>...</svg>
+</nova-icon>
+```
+
+**After (light DOM):**
+```html
+<nova-icon icon="star" class="w-8 h-8 text-blue-500">
+  <svg><use href="#star"></use></svg>
+</nova-icon>
+```
+
+## Examples
+
+Interactive examples available in `/examples`:
+
+```bash
+bun run build
+bun run examples
+```
+
+View live demos at http://localhost:8080
+
+For more documentation, see [specs/002-light-dom-refactor/quickstart.md](specs/002-light-dom-refactor/quickstart.md).
 
 ## Development Setup
 
