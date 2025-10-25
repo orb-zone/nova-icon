@@ -77,10 +77,10 @@ export class NovaIcon extends HTMLElement {
     this.style.setProperty('--animation-stagger', stagger);
 
     // Parse layers
-    if (layers) {
+    if (layers != null) {
       const layerParts = layers.split(',').map(l => l.trim().split(':'));
-      if (layerParts.length > 0) {
-        const firstLayer = layerParts[0];
+      if (layerParts.length > 0 && layerParts[0]!.length >= 2) {
+        const firstLayer = layerParts[0]!;
         this.style.setProperty('--layer-duration', firstLayer[1] || duration);
         this.style.setProperty('--layer-delay', firstLayer[2] || delay);
       }
@@ -139,10 +139,10 @@ export class NovaIcon extends HTMLElement {
 
       // Different stroke weights and opacities for layers
       const layerIndex = index % 3;
-      const strokeWidths = ['1', '2', '3'];
-      const opacities = ['0.5', '0.7', '1'];
-      path.setAttribute('stroke-width', strokeWidths[layerIndex]);
-      path.style.opacity = opacities[layerIndex];
+      const strokeWidths: string[] = ['1', '2', '3'];
+      const opacities: string[] = ['0.5', '0.7', '1'];
+      path.setAttribute('stroke-width', strokeWidths[layerIndex]!);
+      path.style.opacity = opacities[layerIndex]!;
 
       path.setAttribute('stroke-dasharray', '1 0');
       path.setAttribute('stroke-dashoffset', '1');
