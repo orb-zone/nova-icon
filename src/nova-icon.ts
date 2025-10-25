@@ -132,7 +132,10 @@ export class NovaIcon extends HTMLElement {
     // Add paths with normalization for animations
     iconDef.paths.forEach((pathData, index) => {
       const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d', pathData);
+      // Extract d attribute from pathData string
+      const dMatch = pathData.match(/d="([^"]*)"/);
+      const dValue = dMatch ? dMatch[1] : '';
+      path.setAttribute('d', dValue || '');
       path.setAttribute('pathLength', '1');
       path.setAttribute('stroke', 'currentColor');
       path.setAttribute('fill', 'none');
