@@ -14,7 +14,6 @@ describe('Component Rendering with Registered Icons', () => {
 
     class MockHTMLElement {
       _attributes: Record<string, string> = {};
-      _shadowRoot: any = null;
       innerHTML = '';
 
       getAttribute(name: string) {
@@ -27,27 +26,6 @@ describe('Component Rendering with Registered Icons', () => {
 
       appendChild(child: any) {
         return child;
-      }
-
-      attachShadow(options: { mode: string }) {
-        if (!this._shadowRoot) {
-          this._shadowRoot = {
-            _children: [] as any[],
-            appendChild: (child: any) => {
-              this._shadowRoot._children.push(child);
-              return child;
-            },
-            querySelectorAll: (selector: string) => {
-              return this._shadowRoot._children.filter((child: any) => {
-                if (selector === 'svg:not(style ~ svg)') {
-                  return child.tagName === 'SVG';
-                }
-                return false;
-              });
-            },
-          };
-        }
-        return this._shadowRoot;
       }
     }
 
@@ -65,12 +43,6 @@ describe('Component Rendering with Registered Icons', () => {
           return el;
         },
         firstChild: null,
-      },
-      createElement: (tag: string) => {
-        return {
-          tagName: tag.toUpperCase(),
-          textContent: '',
-        };
       },
       createElementNS: (ns: string, tag: string) => {
         const el: any = {
