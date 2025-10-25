@@ -13,6 +13,7 @@ describe('Registry Operations', () => {
         insertBefore: (el: any) => el,
         firstChild: null,
       },
+      contains: (el: any) => elements.includes(el),
       createElementNS: (ns: string, tag: string) => {
         const el: any = {
           id: '',
@@ -83,5 +84,29 @@ describe('Registry Operations', () => {
     
     expect(NovaIconRegistry.has('test-icon')).toBe(true);
     expect(NovaIconRegistry.has('non-existent')).toBe(false);
+  });
+
+  it('should auto-recreate defs container if removed from DOM', () => {
+    const { NovaIconRegistry } = require('../../src/runtime/registry');
+    
+    // Register an icon to create the container
+    NovaIconRegistry.register('icon1', 'M10 10 L20 20');
+    const firstContainer = NovaIconRegistry.getDefsContainer();
+    
+    // Simulate container being removed from DOM by setting document.contains to return false
+    const originalContains = mockDocument.contains;
+    mockDocument.contains = () => false;
+    
+    // Get container again - should recreate
+    const secondContainer = NovaIconRegistry.getDefsContainer();
+    
+    // Should have recreated (different object)
+    expect(secondContainer).not.toBe(firstContainer);
+    
+    // Registered icon should still be available
+    expect(NovaIconRegistry.has('icon1')).toBe(true);
+    
+    // Restore
+    mockDocument.contains = originalContains;
   });
 });

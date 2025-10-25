@@ -10,6 +10,12 @@ export class NovaIconRegistry {
   private static defsContainer: SVGDefsElement | null = null;
 
   static getDefsContainer(): SVGDefsElement {
+    // Check if container exists and is still in the DOM
+    if (this.defsContainer && !document.contains(this.defsContainer)) {
+      // Container was removed from DOM, need to recreate
+      this.defsContainer = null;
+    }
+
     if (!this.defsContainer) {
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.style.display = 'none';
@@ -20,6 +26,17 @@ export class NovaIconRegistry {
       document.body.insertBefore(svg, document.body.firstChild);
 
       this.defsContainer = defs;
+
+      // Re-register all symbols if recreating container
+      if (this.registry.size > 0) {
+        for (const [name, iconDef] of this.registry.entries()) {
+          const symbol = document.createElementNS('http://www.w3.org/2000/svg', 'symbol');
+          symbol.id = name;
+          symbol.setAttribute('viewBox', iconDef.viewBox || '0 0 24 24');
+          symbol.innerHTML = iconDef.paths.join(' ');
+          defs.appendChild(symbol);
+        }
+      }
     }
     return this.defsContainer;
   }
