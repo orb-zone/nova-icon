@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Test</title>
+  <style>
+    body { padding: 20px; font-family: system-ui; }
+  </style>
+</head>
+<body>
+  <h1>Simple NovaIcon Test</h1>
+  
+  <div id="status">Loading...</div>
+  
+  <div style="margin: 20px 0;">
+    <nova-icon id="test-icon" icon="test-icon" size="48px" color="blue"></nova-icon>
+  </div>
+
+  <script type="module">
+    const status = document.getElementById('status');
+    
+    try {
+      status.textContent = 'Importing module...';
+      const module = await import('../dist/nova-icon.js');
+      status.textContent = 'Module imported: ' + JSON.stringify(Object.keys(module));
+      
+      const { NovaIconRegistry } = module;
+      
+      status.textContent += '\nRegistering icon...';
+      NovaIconRegistry.register('test-icon', 
+        '<path d="M10 10 L90 90 M90 10 L10 90" stroke="currentColor" fill="none" stroke-width="4" stroke-linecap="round" />', 
+        { viewBox: '0 0 100 100' }
+      );
+      
+      status.textContent += '\nIcon registered!';
+      
+      // Force a render
+      const icon = document.getElementById('test-icon');
+      if (icon && icon.connectedCallback) {
+        icon.connectedCallback();
+      }
+      
+      setTimeout(() => {
+        status.textContent += '\n\nIcon innerHTML: ' + (icon.innerHTML ? 'HAS CONTENT' : 'EMPTY');
+        status.textContent += '\nIcon children: ' + icon.children.length;
+      }, 100);
+      
+    } catch (error) {
+      status.textContent = 'ERROR: ' + error.message + '\n' + error.stack;
+    }
+  </script>
+</body>
+</html>

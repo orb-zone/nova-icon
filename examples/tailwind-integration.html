@@ -9,7 +9,20 @@
     import { NovaIconRegistry } from '../dist/nova-icon.js';
     import { registerExampleIcons } from './shared.js';
     
+    // Wait for custom elements to be defined
+    await customElements.whenDefined('nova-icon');
+    
+    // Register all example icons
     registerExampleIcons(NovaIconRegistry);
+    
+    // Force re-render of any existing icons
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('nova-icon').forEach(icon => {
+        if (icon.connectedCallback) {
+          icon.connectedCallback();
+        }
+      });
+    });
   </script>
 </head>
 <body class="bg-gray-50 p-8">
