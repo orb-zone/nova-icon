@@ -16,6 +16,7 @@ describe('Duplicate Icon Handling', () => {
         },
         firstChild: null,
       },
+      contains: (el: any) => elements.includes(el),
       createElementNS: (ns: string, tag: string) => {
         const el: any = {
           id: '',

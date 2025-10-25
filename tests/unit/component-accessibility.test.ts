@@ -1,8 +1,12 @@
 import { describe, it, expect, beforeEach } from 'bun:test';
 
-describe.skip('Component Accessibility', () => {
+describe('Component Accessibility', () => {
   beforeEach(() => {
-    (global as any).HTMLElement = class {};
+    // Light DOM: component renders to innerHTML (no shadow root)
+    (global as any).HTMLElement = class {
+      innerHTML = '';
+      style = { setProperty: () => {} };
+    };
     (global as any).customElements = { define: () => {} };
     (global as any).window = {
       matchMedia: (query: string) => ({

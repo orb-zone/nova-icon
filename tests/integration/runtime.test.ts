@@ -21,6 +21,7 @@ describe('Singleton defs container creation', () => {
     
     mockDocument = {
       body: mockBody,
+      contains: (el: any) => bodyElements.includes(el) || allElements.includes(el),
       createElementNS: (ns: string, tag: string) => {
         const el: any = {
           tagName: tag.toUpperCase(),
