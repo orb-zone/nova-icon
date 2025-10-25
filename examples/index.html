@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaIcon Examples</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .example-card {
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .example-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .code-block {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div class="container mx-auto px-4 py-12 max-w-6xl">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-bold text-gray-900 mb-4">
+        NovaIcon Examples
+      </h1>
+      <p class="text-xl text-gray-600 mb-2">
+        Animated SVG icons with Tailwind CSS integration
+      </p>
+      <p class="text-sm text-gray-500">
+        Light DOM • Efficient Symbol Sharing • Zero Dependencies
+      </p>
+    </div>
+
+    <!-- Quick Start -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">🚀 Quick Start</h2>
+      <div class="space-y-4">
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-2">1. Install</h3>
+          <div class="code-block">
+npx jsr add @orb-zone/nova-icon
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-2">2. Import & Register</h3>
+          <div class="code-block">
+import { NovaIconRegistry } from '@orb-zone/nova-icon';
+
+NovaIconRegistry.register('my-icon', '&lt;path d="..." /&gt;');
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-2">3. Use in HTML</h3>
+          <div class="code-block">
+&lt;nova-icon icon="my-icon" class="w-8 h-8 text-blue-500"&gt;&lt;/nova-icon&gt;
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Examples Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      
+      <!-- Basic Usage -->
+      <a href="./basic-usage.html" class="example-card bg-white rounded-lg shadow-md p-6 block hover:no-underline">
+        <div class="text-4xl mb-4">📦</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Basic Usage</h3>
+        <p class="text-gray-600 text-sm mb-4">
+          Register icons and render them with simple attributes
+        </p>
+        <div class="text-blue-600 text-sm font-semibold">
+          View Example →
+        </div>
+      </a>
+
+      <!-- Tailwind Integration -->
+      <a href="./tailwind-integration.html" class="example-card bg-white rounded-lg shadow-md p-6 block hover:no-underline">
+        <div class="text-4xl mb-4">🎨</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Tailwind Integration</h3>
+        <p class="text-gray-600 text-sm mb-4">
+          Apply utility classes directly to icon components
+        </p>
+        <div class="text-blue-600 text-sm font-semibold">
+          View Example →
+        </div>
+      </a>
+
+      <!-- Animations -->
+      <a href="./animations.html" class="example-card bg-white rounded-lg shadow-md p-6 block hover:no-underline">
+        <div class="text-4xl mb-4">✨</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Animations</h3>
+        <p class="text-gray-600 text-sm mb-4">
+          Hover effects, transitions, and CSS animations
+        </p>
+        <div class="text-blue-600 text-sm font-semibold">
+          View Example →
+        </div>
+      </a>
+
+      <!-- Responsive Design -->
+      <a href="./responsive.html" class="example-card bg-white rounded-lg shadow-md p-6 block hover:no-underline">
+        <div class="text-4xl mb-4">📱</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Responsive Design</h3>
+        <p class="text-gray-600 text-sm mb-4">
+          Breakpoint-based sizing with Tailwind
+        </p>
+        <div class="text-blue-600 text-sm font-semibold">
+          View Example →
+        </div>
+      </a>
+
+      <!-- Theming -->
+      <a href="./theming.html" class="example-card bg-white rounded-lg shadow-md p-6 block hover:no-underline">
+        <div class="text-4xl mb-4">🌓</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Theming</h3>
+        <p class="text-gray-600 text-sm mb-4">
+          Dark mode, CSS variables, and custom themes
+        </p>
+        <div class="text-blue-600 text-sm font-semibold">
+          View Example →
+        </div>
+      </a>
+
+      <!-- Accessibility -->
+      <a href="./accessibility.html" class="example-card bg-white rounded-lg shadow-md p-6 block hover:no-underline">
+        <div class="text-4xl mb-4">♿</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Accessibility</h3>
+        <p class="text-gray-600 text-sm mb-4">
+          Reduced motion support and ARIA best practices
+        </p>
+        <div class="text-blue-600 text-sm font-semibold">
+          View Example →
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Features -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">✨ Key Features</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-2">🚀 Light DOM Rendering</h3>
+          <p class="text-gray-600 text-sm">
+            No shadow DOM barriers. Icons render directly to innerHTML for seamless styling.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-2">🔗 Efficient Symbol Sharing</h3>
+          <p class="text-gray-600 text-sm">
+            Each icon stored once, referenced N times via SVG <code class="bg-gray-100 px-1 rounded">&lt;use&gt;</code> elements.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-2">🎨 Tailwind Native</h3>
+          <p class="text-gray-600 text-sm">
+            Apply utility classes directly: <code class="bg-gray-100 px-1 rounded">w-8 h-8 text-blue-500</code>
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-2">♿ Accessibility First</h3>
+          <p class="text-gray-600 text-sm">
+            Respects <code class="bg-gray-100 px-1 rounded">prefers-reduced-motion</code> automatically.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-2">🌈 CSS Variable Inheritance</h3>
+          <p class="text-gray-600 text-sm">
+            Parent CSS variables flow naturally through light DOM.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-2">📦 Zero Dependencies</h3>
+          <p class="text-gray-600 text-sm">
+            Pure Web Components. Works with any framework or vanilla JS.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center text-gray-500 text-sm">
+      <p class="mb-2">
+        Built with ❤️ by the Orb Zone team
+      </p>
+      <p>
+        <a href="https://github.com/orb-zone/nova-icon" class="text-blue-600 hover:underline">
+          View on GitHub
+        </a>
+        •
+        <a href="https://jsr.io/@orb-zone/nova-icon" class="text-blue-600 hover:underline">
+          View on JSR
+        </a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

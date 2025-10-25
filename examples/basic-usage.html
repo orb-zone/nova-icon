@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Usage - NovaIcon Examples</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module">
+    import { NovaIconRegistry } from '../dist/nova-icon.js';
+    import { registerExampleIcons } from './shared.js';
+    
+    registerExampleIcons(NovaIconRegistry);
+  </script>
+</head>
+<body class="bg-gray-50 p-8">
+  <div class="max-w-4xl mx-auto">
+    <a href="./index.html" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6">
+      ← Back to Examples
+    </a>
+
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">Basic Usage</h1>
+    <p class="text-gray-600 mb-8">Learn how to register and render icons with NovaIcon</p>
+
+    <!-- Example 1 -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">1. Register an Icon</h2>
+      <p class="text-gray-600 mb-4">
+        First, import and register your icons with the NovaIconRegistry:
+      </p>
+      <div class="bg-slate-800 text-slate-100 p-4 rounded-lg overflow-x-auto mb-4">
+        <pre><code>import { NovaIconRegistry } from '@orb-zone/nova-icon';
+
+NovaIconRegistry.register('check-icon',
+  '&lt;path d="M20 50 L40 70 L80 20" stroke="currentColor" fill="none" /&gt;',
+  { viewBox: '0 0 100 100' }
+);</code></pre>
+      </div>
+    </div>
+
+    <!-- Example 2 -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">2. Use in HTML</h2>
+      <p class="text-gray-600 mb-4">
+        Add the icon to your markup with the custom element:
+      </p>
+      <div class="bg-slate-800 text-slate-100 p-4 rounded-lg overflow-x-auto mb-4">
+        <pre><code>&lt;nova-icon icon="check-icon"&gt;&lt;/nova-icon&gt;</code></pre>
+      </div>
+      <div class="border-2 border-gray-200 rounded-lg p-8 bg-gray-50 flex items-center gap-4">
+        <nova-icon icon="check-icon"></nova-icon>
+        <span class="text-gray-600">← Default size (24px)</span>
+      </div>
+    </div>
+
+    <!-- Example 3 -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">3. Set Size</h2>
+      <p class="text-gray-600 mb-4">
+        Control icon size with the <code class="bg-gray-100 px-2 py-1 rounded">size</code> attribute:
+      </p>
+      <div class="bg-slate-800 text-slate-100 p-4 rounded-lg overflow-x-auto mb-4">
+        <pre><code>&lt;nova-icon icon="star-icon" size="48px"&gt;&lt;/nova-icon&gt;</code></pre>
+      </div>
+      <div class="border-2 border-gray-200 rounded-lg p-8 bg-gray-50 flex items-center gap-8">
+        <div class="text-center">
+          <nova-icon icon="star-icon" size="24px"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">24px</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="star-icon" size="48px"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">48px</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="star-icon" size="64px"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">64px</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 4 -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">4. Set Color</h2>
+      <p class="text-gray-600 mb-4">
+        Control icon color with the <code class="bg-gray-100 px-2 py-1 rounded">color</code> attribute:
+      </p>
+      <div class="bg-slate-800 text-slate-100 p-4 rounded-lg overflow-x-auto mb-4">
+        <pre><code>&lt;nova-icon icon="heart-icon" color="red" size="48px"&gt;&lt;/nova-icon&gt;</code></pre>
+      </div>
+      <div class="border-2 border-gray-200 rounded-lg p-8 bg-gray-50 flex items-center gap-8">
+        <div class="text-center">
+          <nova-icon icon="heart-icon" color="red" size="48px"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">red</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="heart-icon" color="blue" size="48px"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">blue</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="heart-icon" color="#8b5cf6" size="48px"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">#8b5cf6</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 5 -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">5. Multiple Icons</h2>
+      <p class="text-gray-600 mb-4">
+        Use multiple icon instances efficiently - each references the same symbol:
+      </p>
+      <div class="border-2 border-gray-200 rounded-lg p-8 bg-gray-50 flex flex-wrap gap-4">
+        <nova-icon icon="check-icon" size="32px" color="green"></nova-icon>
+        <nova-icon icon="x-icon" size="32px" color="red"></nova-icon>
+        <nova-icon icon="star-icon" size="32px" color="gold"></nova-icon>
+        <nova-icon icon="heart-icon" size="32px" color="pink"></nova-icon>
+        <nova-icon icon="menu-icon" size="32px" color="gray"></nova-icon>
+        <nova-icon icon="search-icon" size="32px" color="blue"></nova-icon>
+        <nova-icon icon="settings-icon" size="32px" color="purple"></nova-icon>
+        <nova-icon icon="bell-icon" size="32px" color="orange"></nova-icon>
+      </div>
+      <p class="text-sm text-gray-500 mt-4">
+        💡 <strong>Tip:</strong> All instances of the same icon share a single symbol definition in the DOM for optimal performance.
+      </p>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-blue-900 mb-2">Next Steps</h3>
+      <ul class="text-blue-800 space-y-2">
+        <li>→ <a href="./tailwind-integration.html" class="underline">Learn Tailwind Integration</a></li>
+        <li>→ <a href="./animations.html" class="underline">Explore Animations</a></li>
+        <li>→ <a href="./responsive.html" class="underline">See Responsive Examples</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
