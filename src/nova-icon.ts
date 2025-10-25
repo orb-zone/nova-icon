@@ -42,12 +42,16 @@ export class NovaIcon extends HTMLElement {
 
   private onHoverStart() {
     if (!this._reducedMotion) {
-      this.style.setProperty('--dash-offset', '0');
+      this.querySelectorAll('path').forEach(path => {
+        (path as any).style.strokeDashoffset = '0';
+      });
     }
   }
 
   private onHoverEnd() {
-    this.style.setProperty('--dash-offset', '1');
+    this.querySelectorAll('path').forEach(path => {
+      (path as any).style.strokeDashoffset = '1';
+    });
   }
 
   disconnectedCallback() {
@@ -75,7 +79,6 @@ export class NovaIcon extends HTMLElement {
     this.style.setProperty('--transition-duration', duration);
     this.style.setProperty('--transition-delay', delay);
     this.style.setProperty('--stagger-amount', stagger);
-    this.style.setProperty('--dash-offset', '1');
 
     // Parse layers
     if (layers != null) {
@@ -149,7 +152,7 @@ export class NovaIcon extends HTMLElement {
       path.style.opacity = opacities[layerIndex]!;
 
       path.style.strokeDasharray = '1 0';
-      path.style.strokeDashoffset = 'var(--dash-offset)';
+      path.style.strokeDashoffset = '1';
       const staggerDelay = `calc(var(--transition-delay) + ${index} * var(--stagger-amount))`;
       path.style.transition = `stroke-dashoffset var(--transition-duration) ease-in-out ${staggerDelay}`;
       path.style.setProperty('--path-index', index.toString());
