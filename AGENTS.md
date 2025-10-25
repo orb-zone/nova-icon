@@ -6,6 +6,7 @@ Auto-generated from all feature plans. Last updated: 2025-10-23
 - TypeScript 5 + Bun (runtime, build, test), TailwindCSS (optional peer) (001-package-setup)
 - N/A (static assets only) (001-package-setup)
 - N/A (client-side only) (002-light-dom-refactor)
+- TypeScript 5 + Bun (runtime, build, test), TailwindCSS (optional peer), CSS custom properties for animations (003-lineart-animations)
 
 - TypeScript 5 + Bun, TailwindCSS (001-package-setup)
 
@@ -59,10 +60,10 @@ bun run build
 TypeScript 5: Follow standard conventions
 
 ## Recent Changes
+- 003-lineart-animations: Added TypeScript 5 + Bun (runtime, build, test), TailwindCSS (optional peer), CSS custom properties for animations
 - 002-light-dom-refactor: Added TypeScript 5 + Bun (runtime, build, test), TailwindCSS (optional peer)
 - 001-package-setup: Added TypeScript 5 + Bun (runtime, build, test), TailwindCSS (optional peer)
 
-- 001-package-setup: Added TypeScript 5 + Bun, TailwindCSS
 
 <!-- MANUAL ADDITIONS START -->
 
