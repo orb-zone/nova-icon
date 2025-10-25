@@ -1,6 +1,6 @@
 # PLAN.md: Step-by-Step Checklist for Creating @orb-zone/nova-icon Bun Package
 
-This document outlines a step-by-step checklist for developing the `@orb-zone/nova-icon` Bun package. The package will provide a reusable web-component for animated SVG icons, based on the patterns and proof-of-concept in `AGENT.md` and `example.html`. The component will be compatible with Nova Web Components (using Tailwind CSS and CSS custom properties for theming) but will not depend on them, ensuring standalone usability.
+This document outlines a step-by-step checklist for developing the `@orb-zone/nova-icon` Bun package. The package will provide a reusable web-component for animated SVG icons, based on the patterns and proof-of-concept in `svg-icon-deep-dive.html` and `concept-example.html`. The component will be compatible with Nova Web Components (using Tailwind CSS and CSS custom properties for theming) but will not depend on them, ensuring standalone usability.
 
 The web-component will encapsulate the layered SVG stroke-dash animation system, allowing for customizable icons with hover-triggered animations, stagger effects, and accessibility features.
 
@@ -8,8 +8,8 @@ The web-component will encapsulate the layered SVG stroke-dash animation system,
 
 ## Phase 1: Package Setup and Structure
 
-- [ ] Initialize Bun package: Run `bun init` in the project directory to create `package.json`, basic structure, and entry points.
-- [ ] Update `package.json`:
+- [x] Initialize Bun package: Run `bun init` in the project directory to create `package.json`, basic structure, and entry points.
+- [x] Update `package.json`:
   - Set name to `@orb-zone/nova-icon`.
   - Add description: "A reusable web-component for animated SVG icons compatible with Nova Design System."
   - Specify main entry point (e.g., `dist/nova-icon.js`).
@@ -17,13 +17,13 @@ The web-component will encapsulate the layered SVG stroke-dash animation system,
   - Include dependencies: None required for core functionality; optional peer dependencies for Tailwind integration (e.g., `tailwindcss` as peer dep).
   - Add keywords: "web-component", "svg", "animation", "nova", "icon".
   - Set license (e.g., MIT).
-- [ ] Create directory structure:
+- [x] Create directory structure:
   - `src/`: Source code (e.g., `nova-icon.ts` for the web-component).
   - `dist/`: Build output.
   - `assets/`: SVG symbols, filters, and any static assets (e.g., `icons.svg` for symbol definitions).
   - `tests/`: Unit tests for the component.
   - `docs/`: Documentation and examples.
-- [ ] Set up build configuration: Use Bun's bundler or a tool like Rollup/Vite to bundle the TypeScript into a single JS file for distribution.
+- [x] Set up build configuration: Use Bun's bundler or a tool like Rollup/Vite to bundle the TypeScript into a single JS file for distribution.
 
 ---
 
@@ -31,11 +31,11 @@ The web-component will encapsulate the layered SVG stroke-dash animation system,
 
 - [ ] Define the custom element: Create `src/nova-icon.ts` as a TypeScript class extending `HTMLElement` (e.g., `class NovaIcon extends HTMLElement`).
 - [ ] Implement core SVG structure:
-  - Embed or reference SVG symbols from `assets/icons.svg` (based on `example.html` patterns: star, sun-rays, etc.).
+  - Embed or reference SVG symbols from `assets/icons.svg` (based on `concept-concept-example.html` patterns: star, sun-rays, etc.).
   - Use `<defs>` for reusable filters (e.g., glow filter) and symbols.
   - Create layered `<use>` elements for background, playground, and foreground layers.
   - Apply `pathLength="1"` to all paths for normalized animations.
-- [ ] Integrate animation patterns from `AGENT.md`:
+- [ ] Integrate animation patterns from `svg-icon-deep-dive.html`:
   - Use CSS custom properties (e.g., `--dash-offset`, `--draw-duration`) on `<use>` elements.
   - Define inline transitions on path elements (e.g., `style="transition: stroke-dashoffset var(--draw-duration) var(--draw-timing);"`).
   - Implement stagger effects with `--path-index` and `calc()` for delays.
@@ -88,7 +88,7 @@ The web-component will encapsulate the layered SVG stroke-dash animation system,
   - Usage examples with and without Nova.
   - API documentation for attributes and CSS variables.
   - Link to Nova Web Components docs for integration guidance.
-- [ ] Publish to npm: Run `bun run build`, then `npm publish` (ensure package is scoped correctly).
+- [ ] Publish to JSR.io: Run `bun run build`, then `jsr publish` (ensure package is scoped correctly to @orb-zone).
 
 ---
 
@@ -98,7 +98,7 @@ The web-component will encapsulate the layered SVG stroke-dash animation system,
   - Lazy-load SVG assets if needed.
   - Minimize bundle size.
   - Test on various devices and browsers (Chrome, Firefox, Safari, mobile).
-- [ ] Cross-browser testing: Ensure animations work reliably (focus on modern browsers as per `AGENT.md`).
+- [ ] Cross-browser testing: Ensure animations work reliably (focus on modern browsers as per `svg-icon-deep-dive.html`).
 - [ ] Accessibility audit: Use tools like axe-core to verify compliance.
 - [ ] Gather feedback: Share with team for review and iterate based on Nova integration tests.
 - [ ] Versioning: Follow semantic versioning for releases.
@@ -107,8 +107,8 @@ The web-component will encapsulate the layered SVG stroke-dash animation system,
 
 ## References
 
-- **AGENT.md**: Core implementation patterns for SVG animations.
-- **example.html**: Proof-of-concept for layered icons.
+- **svg-icon-deep-dive.html**: Core implementation patterns for SVG animations.
+- **concept-example.html**: Proof-of-concept for layered icons.
 - **Nova Web Components Docs**: https://nova.eliagroup.io/latest/getting-started/developers/frameworks/web-components-iAGHLFf7 – For theming and Tailwind integration.
 - **Web Components Standards**: MDN docs for custom elements and shadow DOM.
 

@@ -1,0 +1,53 @@
+{
+  "name": "@orb-zone/nova-icon",
+  "version": "0.1.0",
+  "description": "A reusable web-component for animated SVG icons compatible with Nova Design System.",
+  "main": "dist/nova-icon.js",
+  "module": "dist/nova-icon.js",
+  "types": "dist/nova-icon.d.ts",
+  "type": "module",
+  "exports": {
+    ".": "./src/nova-icon.ts",
+    "./schema": "./contracts/component-schema.json"
+  },
+  "scripts": {
+    "build": "rm -rf dist && bun run build:bundle && bun run build:types",
+    "build:bundle": "bun build ./src/nova-icon.ts --outdir ./dist --format esm --packages external --target browser",
+    "build:types": "tsc --emitDeclarationOnly",
+    "dev": "bun build src/nova-icon.ts --outdir dist --format esm --target browser --watch",
+    "test": "bun test tests/unit tests/integration tests/contract",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed"
+  },
+  "keywords": [
+    "web-component",
+    "svg",
+    "animation",
+    "nova",
+    "icon"
+  ],
+  "author": "Orb Zone",
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^3.0.1",
+    "cac": "^6.7.14",
+    "linkedom": "^0.18.12",
+    "svgo": "^4.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/bun": "latest",
+    "typescript": "^5"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4"
+  },
+  "files": [
+    "src",
+    "dist",
+    "contracts",
+    "README.md"
+  ]
+}

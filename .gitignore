@@ -1,0 +1,52 @@
+# dependencies (bun install)
+node_modules
+
+# output
+out
+dist
+*.tgz
+
+# code coverage
+coverage
+*.lcov
+
+# logs
+logs
+_.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# caches
+.eslintcache
+.cache
+*.tsbuildinfo
+
+# IntelliJ based IDEs
+.idea
+
+# Finder (MacOS) folder config
+.DS_Store
+
+# Universal
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+
+# Playwright
+playwright-report/
+test-results/
+playwright/.cache/
+
+# OpenCode MCP configuration is now in opencode.jsonc (committed)
+# Legacy MCP files (deprecated)
+.mcp.json
+
+# Development debug files
+test-debug.html
