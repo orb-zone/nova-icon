@@ -17,9 +17,13 @@ export class NovaIcon extends HTMLElement {
     style.textContent = `
       :host {
         display: inline-block;
+        width: var(--icon-size, 24px);
+        height: var(--icon-size, 24px);
       }
       svg {
         display: block;
+        width: 100%;
+        height: 100%;
       }
     `;
     this._shadowRoot.appendChild(style);
@@ -59,6 +63,8 @@ export class NovaIcon extends HTMLElement {
     const size = this.getAttribute('size') || '24px';
     const color = this.getAttribute('color') || 'currentColor';
 
+    this.style.setProperty('--icon-size', size);
+
     const existingSvgs = this._shadowRoot.querySelectorAll('svg:not(style ~ svg)');
     existingSvgs.forEach(svg => svg.remove());
 
@@ -73,8 +79,6 @@ export class NovaIcon extends HTMLElement {
     }
 
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('width', size);
-    svg.setAttribute('height', size);
     svg.setAttribute('viewBox', iconDef.viewBox || '0 0 24 24');
     svg.style.color = color;
 
@@ -84,10 +88,17 @@ export class NovaIcon extends HTMLElement {
       svg.style.setProperty('--animation-enabled', '1');
     }
 
-    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-    use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#${iconName}`);
-
-    svg.appendChild(use);
+    const pathData = iconDef.paths.join(' ');
+    if (pathData.trim().startsWith('<')) {
+      svg.innerHTML = pathData;
+    } else {
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', pathData);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', 'currentColor');
+      path.setAttribute('stroke-width', '2');
+      svg.appendChild(path);
+    }
     this._shadowRoot.appendChild(svg);
   }
 }
