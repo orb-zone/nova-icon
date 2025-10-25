@@ -100,6 +100,10 @@ This project is configured with Model Context Protocol (MCP) servers to enhance 
   - Test animations and interactions in real DOM environments
   - Capture screenshots and debug rendering issues
   - Validate accessibility features in real browsers
+  - Performance profiling via Chrome DevTools Protocol (CDP)
+  - Profile SVG animation performance and Core Web Vitals
+  - Measure paint and layout times
+  - Debug CSS animation frame rates
 
 **Filesystem MCP Server** (`@modelcontextprotocol/server-filesystem`)
 - **Purpose**: Enhanced file system operations and inspection
@@ -116,6 +120,14 @@ This project is configured with Model Context Protocol (MCP) servers to enhance 
   - Inspect diffs and changes
   - Navigate branches and tags
   - Understand code evolution
+
+**Fetch MCP Server** (`@modelcontextprotocol/server-fetch`)
+- **Purpose**: Fetch web content and documentation
+- **Use Cases**:
+  - Look up Web Components specifications
+  - Reference MDN documentation for shadow DOM
+  - Research SVG animation standards
+  - Verify browser compatibility information
 
 ### Testing Strategy
 
@@ -137,8 +149,10 @@ This project is configured with Model Context Protocol (MCP) servers to enhance 
 When working on this project:
 1. Use **integration tests** for quick validation during development
 2. Use **e2e tests** via Playwright MCP for visual/rendering verification
-3. Leverage **filesystem MCP** for efficient code exploration
-4. Use **git MCP** to understand code history and recent changes
-5. Always run `bun test` before suggesting e2e test runs
+3. Use **Playwright MCP** for performance profiling and animation analysis (includes CDP access)
+4. Leverage **filesystem MCP** for efficient code exploration
+5. Use **git MCP** to understand code history and recent changes
+6. Use **Fetch MCP** to research web standards and API documentation
+7. Always run `bun test` before suggesting e2e test runs
 
 <!-- MANUAL ADDITIONS END -->

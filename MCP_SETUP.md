@@ -32,7 +32,7 @@ MCP servers enhance AI assistant capabilities by providing structured access to 
    }
    ```
 
-3. **The Playwright server** requires no path configuration and works out of the box.
+3. **The Playwright and Fetch servers** require no path configuration and work out of the box.
 
 ### Location
 `.mcp.json` in the project root (gitignored, created from `.mcp.json.example`)
@@ -72,6 +72,23 @@ MCP servers enhance AI assistant capabilities by providing structured access to 
 - Inspect diffs and changes
 - Navigate branches and tags
 - Understand code evolution
+
+#### 4. Fetch MCP Server
+**Package**: `@modelcontextprotocol/server-fetch`
+
+**Purpose**: Fetch web content and documentation
+
+**Capabilities**:
+- Retrieve web pages and API responses
+- Access documentation (MDN, W3C specs)
+- Research web standards and best practices
+- Fetch external resources for testing
+
+**Use Cases for nova-icon**:
+- Look up Web Components specifications
+- Reference MDN documentation for shadow DOM
+- Research SVG animation standards
+- Verify browser compatibility information
 
 ## E2E Testing Setup
 
@@ -132,10 +149,11 @@ The E2E tests verify:
 When working with this project:
 
 1. **Quick validation**: Use `bun test` for fast feedback
-2. **Visual verification**: Use Playwright MCP for rendering tests
+2. **Visual verification**: Use Playwright MCP for rendering tests and performance profiling
 3. **Code exploration**: Leverage filesystem MCP for efficient navigation
 4. **History inspection**: Use git MCP to understand changes
-5. **Before e2e tests**: Always run `bun run build` first
+5. **Documentation lookup**: Use Fetch MCP to research web standards and APIs
+6. **Before e2e tests**: Always run `bun run build` first
 
 ## Configuration Files
 
