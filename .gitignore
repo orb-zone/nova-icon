@@ -44,7 +44,8 @@ playwright-report/
 test-results/
 playwright/.cache/
 
-# MCP configuration (machine-specific)
+# OpenCode MCP configuration is now in opencode.jsonc (committed)
+# Legacy MCP files (deprecated)
 .mcp.json
 
 # Development debug files

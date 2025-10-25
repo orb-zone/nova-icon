@@ -105,7 +105,7 @@ For full implementation details, refer to svg-icon-deep-dive.md.
 
 ## MCP Servers
 
-This project is configured with Model Context Protocol (MCP) servers to enhance AI assistant capabilities. The configuration is in `.mcp.json` at the project root.
+This project is configured with Model Context Protocol (MCP) servers to enhance AI assistant capabilities. The configuration is in `opencode.jsonc` at the project root using OpenCode's native configuration format.
 
 ### Available MCP Servers
 

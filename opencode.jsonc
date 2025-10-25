@@ -1,0 +1,25 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": ["bunx", "-y", "@executeautomation/playwright-mcp-server"],
+      "enabled": true
+    },
+    "filesystem": {
+      "type": "local",
+      "command": ["bunx", "-y", "@modelcontextprotocol/server-filesystem", "/Users/trave/Code/@OZ/nova-icon"],
+      "enabled": true
+    },
+    "git": {
+      "type": "local",
+      "command": ["bunx", "-y", "@modelcontextprotocol/server-git", "--repository", "/Users/trave/Code/@OZ/nova-icon"],
+      "enabled": true
+    },
+    "fetch": {
+      "type": "local",
+      "command": ["bunx", "-y", "@modelcontextprotocol/server-fetch"],
+      "enabled": true
+    }
+  }
+}
