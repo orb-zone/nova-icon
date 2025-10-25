@@ -16,6 +16,7 @@ describe('Batch Registration', () => {
         },
         firstChild: null,
       },
+      contains: (el: any) => elements.includes(el),
       createElementNS: (ns: string, tag: string) => {
         const el: any = {
           id: '',
@@ -28,6 +29,18 @@ describe('Batch Registration', () => {
           appendChild: function(child: any) { 
             elements.push(child);
             return child;
+          },
+          querySelector: function(selector: string) {
+            return elements.find(e => {
+              if (selector.startsWith('#')) {
+                return e.id === selector.slice(1);
+              }
+              return false;
+            });
+          },
+          remove: function() {
+            const idx = elements.indexOf(this);
+            if (idx > -1) elements.splice(idx, 1);
           },
         };
         return el;

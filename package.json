@@ -15,6 +15,8 @@
     "build:bundle": "bun build ./src/nova-icon.ts --outdir ./dist --format esm --packages external --target browser",
     "build:types": "tsc --emitDeclarationOnly",
     "dev": "bun build src/nova-icon.ts --outdir dist --format esm --target browser --watch",
+    "examples": "bun run build && cp -r dist examples/ && bunx http-server ./examples -p 8080 -o",
+    "examples:clean": "rm -rf examples/dist",
     "test": "bun test tests/unit tests/integration tests/contract",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",

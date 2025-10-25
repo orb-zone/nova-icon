@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailwind Integration - NovaIcon Examples</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module">
+    import { NovaIconRegistry } from './dist/nova-icon.js';
+    import { registerExampleIcons } from './shared.js';
+    
+    // Wait for custom elements to be defined
+    await customElements.whenDefined('nova-icon');
+    
+    // Register all example icons
+    registerExampleIcons(NovaIconRegistry);
+    
+    // Force re-render of any existing icons
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('nova-icon').forEach(icon => {
+        if (icon.connectedCallback) {
+          icon.connectedCallback();
+        }
+      });
+    });
+  </script>
+</head>
+<body class="bg-gray-50 p-8">
+  <div class="max-w-4xl mx-auto">
+    <a href="./index.html" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6">
+      ← Back to Examples
+    </a>
+
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">Tailwind CSS Integration</h1>
+    <p class="text-gray-600 mb-8">NovaIcon renders to light DOM, so Tailwind utilities work directly on components</p>
+
+    <!-- Size Utilities -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">Size Utilities</h2>
+      <p class="text-gray-600 mb-4">
+        Use standard Tailwind sizing classes:
+      </p>
+      <div class="bg-slate-800 text-slate-100 p-4 rounded-lg overflow-x-auto mb-4">
+        <pre><code>&lt;nova-icon icon="check-icon" class="w-6 h-6"&gt;&lt;/nova-icon&gt;
+&lt;nova-icon icon="check-icon" class="w-8 h-8"&gt;&lt;/nova-icon&gt;
+&lt;nova-icon icon="check-icon" class="w-12 h-12"&gt;&lt;/nova-icon&gt;</code></pre>
+      </div>
+      <div class="border-2 border-gray-200 rounded-lg p-8 bg-gray-50 flex items-end gap-8">
+        <div class="text-center">
+          <nova-icon icon="check-icon" class="w-6 h-6 text-green-500"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">w-6 h-6</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="check-icon" class="w-8 h-8 text-green-500"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">w-8 h-8</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="check-icon" class="w-12 h-12 text-green-500"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">w-12 h-12</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="check-icon" class="w-16 h-16 text-green-500"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">w-16 h-16</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="check-icon" class="w-24 h-24 text-green-500"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">w-24 h-24</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color Utilities -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">Color Utilities</h2>
+      <p class="text-gray-600 mb-4">
+        Use Tailwind text color utilities:
+      </p>
+      <div class="bg-slate-800 text-slate-100 p-4 rounded-lg overflow-x-auto mb-4">
+        <pre><code>&lt;nova-icon icon="star-icon" class="w-10 h-10 text-red-500"&gt;&lt;/nova-icon&gt;
+&lt;nova-icon icon="star-icon" class="w-10 h-10 text-blue-500"&gt;&lt;/nova-icon&gt;
+&lt;nova-icon icon="star-icon" class="w-10 h-10 text-purple-500"&gt;&lt;/nova-icon&gt;</code></pre>
+      </div>
+      <div class="border-2 border-gray-200 rounded-lg p-8 bg-gray-50 flex flex-wrap gap-4">
+        <nova-icon icon="star-icon" class="w-10 h-10 text-red-500"></nova-icon>
+        <nova-icon icon="star-icon" class="w-10 h-10 text-orange-500"></nova-icon>
+        <nova-icon icon="star-icon" class="w-10 h-10 text-yellow-500"></nova-icon>
+        <nova-icon icon="star-icon" class="w-10 h-10 text-green-500"></nova-icon>
+        <nova-icon icon="star-icon" class="w-10 h-10 text-blue-500"></nova-icon>
+        <nova-icon icon="star-icon" class="w-10 h-10 text-indigo-500"></nova-icon>
+        <nova-icon icon="star-icon" class="w-10 h-10 text-purple-500"></nova-icon>
+        <nova-icon icon="star-icon" class="w-10 h-10 text-pink-500"></nova-icon>
+      </div>
+    </div>
+
+    <!-- Hover States -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">Hover States</h2>
+      <p class="text-gray-600 mb-4">
+        Apply hover effects with Tailwind hover variants:
+      </p>
+      <div class="bg-slate-800 text-slate-100 p-4 rounded-lg overflow-x-auto mb-4">
+        <pre><code>&lt;nova-icon 
+  icon="heart-icon" 
+  class="w-12 h-12 text-gray-400 hover:text-red-500 transition-colors cursor-pointer"
+&gt;&lt;/nova-icon&gt;</code></pre>
+      </div>
+      <div class="border-2 border-gray-200 rounded-lg p-8 bg-gray-50 flex flex-wrap gap-6">
+        <nova-icon icon="heart-icon" class="w-12 h-12 text-gray-400 hover:text-red-500 transition-colors cursor-pointer"></nova-icon>
+        <nova-icon icon="star-icon" class="w-12 h-12 text-gray-400 hover:text-yellow-500 transition-colors cursor-pointer"></nova-icon>
+        <nova-icon icon="check-icon" class="w-12 h-12 text-gray-400 hover:text-green-500 transition-colors cursor-pointer"></nova-icon>
+        <nova-icon icon="bell-icon" class="w-12 h-12 text-gray-400 hover:text-blue-500 transition-colors cursor-pointer"></nova-icon>
+      </div>
+      <p class="text-sm text-gray-500 mt-4">Hover over the icons to see the color transition</p>
+    </div>
+
+    <!-- Transform Effects -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">Transform Effects</h2>
+      <p class="text-gray-600 mb-4">
+        Combine transforms with hover states:
+      </p>
+      <div class="bg-slate-800 text-slate-100 p-4 rounded-lg overflow-x-auto mb-4">
+        <pre><code>&lt;nova-icon 
+  icon="star-icon" 
+  class="w-12 h-12 text-yellow-500 hover:scale-125 transition-transform cursor-pointer"
+&gt;&lt;/nova-icon&gt;</code></pre>
+      </div>
+      <div class="border-2 border-gray-200 rounded-lg p-8 bg-gray-50 flex flex-wrap gap-8">
+        <div class="text-center">
+          <nova-icon icon="star-icon" class="w-12 h-12 text-yellow-500 hover:scale-125 transition-transform cursor-pointer"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">hover:scale-125</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="x-icon" class="w-12 h-12 text-red-500 hover:rotate-90 transition-transform cursor-pointer"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">hover:rotate-90</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="arrow-right" class="w-12 h-12 text-blue-500 hover:translate-x-2 transition-transform cursor-pointer"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">hover:translate-x-2</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="settings-icon" class="w-12 h-12 text-gray-600 hover:rotate-45 transition-transform cursor-pointer"></nova-icon>
+          <p class="text-xs text-gray-500 mt-2">hover:rotate-45</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Combined Effects -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">Combined Effects</h2>
+      <p class="text-gray-600 mb-4">
+        Mix multiple utilities for rich interactions:
+      </p>
+      <div class="bg-slate-800 text-slate-100 p-4 rounded-lg overflow-x-auto mb-4">
+        <pre><code>&lt;nova-icon 
+  icon="heart-icon" 
+  class="w-12 h-12 text-gray-400 hover:text-red-500 hover:scale-110 transition-all duration-300 cursor-pointer"
+&gt;&lt;/nova-icon&gt;</code></pre>
+      </div>
+      <div class="border-2 border-gray-200 rounded-lg p-8 bg-gray-50 flex flex-wrap gap-8">
+        <nova-icon icon="heart-icon" class="w-12 h-12 text-gray-400 hover:text-red-500 hover:scale-110 transition-all duration-300 cursor-pointer"></nova-icon>
+        <nova-icon icon="star-icon" class="w-12 h-12 text-gray-400 hover:text-yellow-500 hover:rotate-12 transition-all duration-300 cursor-pointer"></nova-icon>
+        <nova-icon icon="bell-icon" class="w-12 h-12 text-gray-400 hover:text-blue-500 hover:-translate-y-1 transition-all duration-300 cursor-pointer"></nova-icon>
+        <nova-icon icon="settings-icon" class="w-12 h-12 text-gray-400 hover:text-purple-500 hover:rotate-90 transition-all duration-500 cursor-pointer"></nova-icon>
+      </div>
+    </div>
+
+    <!-- Button Integration -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">Button Integration</h2>
+      <p class="text-gray-600 mb-4">
+        Icons work seamlessly in Tailwind button components:
+      </p>
+      <div class="border-2 border-gray-200 rounded-lg p-8 bg-gray-50 flex flex-wrap gap-4">
+        <button class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          <nova-icon icon="check-icon" class="w-5 h-5"></nova-icon>
+          Confirm
+        </button>
+        <button class="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+          <nova-icon icon="x-icon" class="w-5 h-5"></nova-icon>
+          Cancel
+        </button>
+        <button class="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+          <nova-icon icon="settings-icon" class="w-5 h-5"></nova-icon>
+          Settings
+        </button>
+        <button class="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 text-gray-700 rounded-lg hover:border-gray-400 hover:bg-gray-50 transition-colors">
+          <nova-icon icon="search-icon" class="w-5 h-5"></nova-icon>
+          Search
+        </button>
+      </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-blue-900 mb-2">Next Steps</h3>
+      <ul class="text-blue-800 space-y-2">
+        <li>→ <a href="./animations.html" class="underline">Explore Animations</a></li>
+        <li>→ <a href="./responsive.html" class="underline">See Responsive Design</a></li>
+        <li>→ <a href="./theming.html" class="underline">Learn About Theming</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
