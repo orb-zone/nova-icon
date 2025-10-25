@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,27 +11,27 @@
       padding: 2rem;
       background: #f5f5f5;
     }
-    
+
     .test-section {
       background: white;
       padding: 2rem;
       margin-bottom: 2rem;
       border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    
+
     h2 {
       margin-top: 0;
       color: #333;
     }
-    
+
     .icon-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 1rem;
       margin-top: 1rem;
     }
-    
+
     .icon-container {
       display: flex;
       flex-direction: column;
@@ -40,16 +41,17 @@
       border: 1px solid #e0e0e0;
       border-radius: 4px;
     }
-    
+
     .icon-label {
       font-size: 0.875rem;
       color: #666;
     }
   </style>
 </head>
+
 <body>
   <h1>NovaIcon E2E Test Page</h1>
-  
+
   <div class="test-section">
     <h2>Basic Icon Rendering</h2>
     <div class="icon-grid">
@@ -110,25 +112,21 @@
     <h2>Accessibility Test</h2>
     <div class="icon-grid">
       <div class="icon-container">
-        <nova-icon 
-          id="accessible-icon" 
-          icon="test-basic" 
-          size="48px"
-          aria-label="Test icon for accessibility"
-        ></nova-icon>
+        <nova-icon id="accessible-icon" icon="test-basic" size="48px"
+          aria-label="Test icon for accessibility"></nova-icon>
         <span class="icon-label">With ARIA label</span>
       </div>
     </div>
   </div>
 
   <script type="module">
-    import '../../dist/nova-icon.js';
+    import { NovaIconRegistry } from '../../dist/nova-icon.js';
 
-    NovaIcon.register('test-basic', 'M10 10 L90 90 M90 10 L10 90', {
+    NovaIconRegistry.register('test-basic', 'M10 10 L90 90 M90 10 L10 90', {
       viewBox: '0 0 100 100'
     });
 
-    NovaIcon.register('test-animated', 
+    NovaIconRegistry.register('test-animated',
       '<path d="M50 10 L90 90 L10 90 Z" stroke="currentColor" fill="none" stroke-width="2" pathLength="1" style="stroke-dasharray: 1 0; stroke-dashoffset: 0; transition: stroke-dashoffset 0.6s ease;" />',
       {
         viewBox: '0 0 100 100'
@@ -136,4 +134,5 @@
     );
   </script>
 </body>
+
 </html>
