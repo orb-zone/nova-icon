@@ -5,14 +5,288 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Animations - NovaIcon Examples</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module">
+    import { NovaIconRegistry } from './dist/nova-icon.js';
+    import { registerExampleIcons } from './shared.js';
+
+    // Wait for custom elements to be defined
+    await customElements.whenDefined('nova-icon');
+
+    // Register all example icons
+    registerExampleIcons(NovaIconRegistry);
+
+    // Force re-render of any existing icons
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('nova-icon').forEach(icon => {
+        if (icon.connectedCallback) {
+          icon.connectedCallback();
+        }
+      });
+    });
+  </script>
+  <style>
+    :root {
+      --draw-duration: 2.2s;
+      --draw-delay: 0s;
+      --draw-timing: ease-out;
+      --dash-array: 1 0;
+      --dash-offset: 1;
+      --line-weight: 2;
+      --line-color: currentColor;
+      --line-cap: round;
+      --line-join: round;
+    }
+
+    svg.icon {
+      cursor: pointer;
+      inline-size: 240px;
+      block-size: 240px;
+      color: #2babe2;
+      overflow: visible;
+    }
+
+    svg.icon:hover use {
+      --dash-offset: 0;
+    }
+
+    use.icon-bg {
+      --line-weight: 6;
+      opacity: 0.35;
+      filter: url(#glow-2);
+      --draw-duration: 2.6s;
+    }
+
+    use.icon-pg {
+      --line-weight: 3;
+      opacity: 0.5;
+      --draw-duration: 1.6s;
+      --draw-delay: 1s;
+      --stagger: 0.1s;
+    }
+
+    use.icon-fg {
+      --line-weight: 1;
+      opacity: 1;
+      --draw-duration: 0.6s;
+      --draw-delay: 2s;
+      --stagger: 0.05s;
+    }
+
+    use.fx {
+      pointer-events: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      svg.icon use {
+        --dash-offset: 0 !important;
+      }
+      svg.icon path {
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 <body class="bg-gray-50 p-8">
-  <div class="max-w-4xl mx-auto">
+  <div class="max-w-6xl mx-auto">
     <a href="./index.html" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6">
       ← Back to Examples
     </a>
-    <h1 class="text-4xl font-bold text-gray-900 mb-4">Animations</h1>
-    <p class="text-gray-600 mb-8">Coming soon: SVG path animations, transitions, and effects</p>
+
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">SVG Stroke-Dash Animations</h1>
+    <p class="text-gray-600 mb-8">Hover over the icons to see stroke-dash animations with stagger effects and layered timing</p>
+
+    <!-- Hidden defs for symbols and filters -->
+    <svg aria-hidden="true" style="position:absolute; width:0; height:0; overflow:hidden">
+      <defs>
+        <filter id="glow-2">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+
+        <symbol id="icon-star" viewBox="-3 -3 30 30">
+          <g fill="none"
+             stroke="var(--line-color)"
+             stroke-width="var(--line-weight)"
+             stroke-linecap="var(--line-cap)"
+             stroke-linejoin="var(--line-join)"
+             stroke-dasharray="var(--dash-array)"
+             stroke-dashoffset="var(--dash-offset)">
+            <path pathLength="1"
+                  style="
+                    --path-index: 0;
+                    transition: stroke-dashoffset var(--draw-duration) var(--draw-timing);
+                    transition-delay: calc(var(--draw-delay) + var(--stagger, 0s) * var(--path-index));
+                    vector-effect: non-scaling-stroke;
+                  "
+                  d="M12 2 L15 10 L23 10 L17 14 L19 22 L12 18 L5 22 L7 14 L1 10 L9 10 Z" />
+            <path pathLength="1"
+                  style="
+                    --path-index: 1;
+                    transition: stroke-dashoffset var(--draw-duration) var(--draw-timing);
+                    transition-delay: calc(var(--draw-delay) + var(--stagger, 0s) * var(--path-index));
+                    vector-effect: non-scaling-stroke;
+                  "
+                  d="M12 6 L14 12 L12 14 L10 12 Z" />
+          </g>
+        </symbol>
+
+        <symbol id="icon-sun-rays" viewBox="-3 -3 30 30">
+          <g fill="none"
+             stroke="var(--line-color)"
+             stroke-width="var(--line-weight)"
+             stroke-linecap="var(--line-cap)"
+             stroke-linejoin="var(--line-join)"
+             stroke-dasharray="var(--dash-array)"
+             stroke-dashoffset="var(--dash-offset)">
+            <!-- Center circle -->
+            <circle cx="12" cy="12" r="3"
+                    pathLength="1"
+                    style="
+                      --path-index: 0;
+                      transition: stroke-dashoffset var(--draw-duration) var(--draw-timing);
+                      transition-delay: calc(var(--draw-delay) + var(--stagger, 0s) * var(--path-index));
+                      vector-effect: non-scaling-stroke;
+                    " />
+            <!-- Rays -->
+            <path pathLength="1"
+                  style="
+                    --path-index: 1;
+                    transition: stroke-dashoffset var(--draw-duration) var(--draw-timing);
+                    transition-delay: calc(var(--draw-delay) + var(--stagger, 0s) * var(--path-index));
+                    vector-effect: non-scaling-stroke;
+                  "
+                  d="M12 2 L12 6" />
+            <path pathLength="1"
+                  style="
+                    --path-index: 2;
+                    transition: stroke-dashoffset var(--draw-duration) var(--draw-timing);
+                    transition-delay: calc(var(--draw-delay) + var(--stagger, 0s) * var(--path-index));
+                    vector-effect: non-scaling-stroke;
+                  "
+                  d="M12 18 L12 22" />
+            <path pathLength="1"
+                  style="
+                    --path-index: 3;
+                    transition: stroke-dashoffset var(--draw-duration) var(--draw-timing);
+                    transition-delay: calc(var(--draw-delay) + var(--stagger, 0s) * var(--path-index));
+                    vector-effect: non-scaling-stroke;
+                  "
+                  d="M2 12 L6 12" />
+            <path pathLength="1"
+                  style="
+                    --path-index: 4;
+                    transition: stroke-dashoffset var(--draw-duration) var(--draw-timing);
+                    transition-delay: calc(var(--draw-delay) + var(--stagger, 0s) * var(--path-index));
+                    vector-effect: non-scaling-stroke;
+                  "
+                  d="M18 12 L22 12" />
+            <path pathLength="1"
+                  style="
+                    --path-index: 5;
+                    transition: stroke-dashoffset var(--draw-duration) var(--draw-timing);
+                    transition-delay: calc(var(--draw-delay) + var(--stagger, 0s) * var(--path-index));
+                    vector-effect: non-scaling-stroke;
+                  "
+                  d="M5 5 L8 8" />
+            <path pathLength="1"
+                  style="
+                    --path-index: 6;
+                    transition: stroke-dashoffset var(--draw-duration) var(--draw-timing);
+                    transition-delay: calc(var(--draw-delay) + var(--stagger, 0s) * var(--path-index));
+                    vector-effect: non-scaling-stroke;
+                  "
+                  d="M19 5 L16 8" />
+            <path pathLength="1"
+                  style="
+                    --path-index: 7;
+                    transition: stroke-dashoffset var(--draw-duration) var(--draw-timing);
+                    transition-delay: calc(var(--draw-delay) + var(--stagger, 0s) * var(--path-index));
+                    vector-effect: non-scaling-stroke;
+                  "
+                  d="M5 19 L8 16" />
+            <path pathLength="1"
+                  style="
+                    --path-index: 8;
+                    transition: stroke-dashoffset var(--draw-duration) var(--draw-timing);
+                    transition-delay: calc(var(--draw-delay) + var(--stagger, 0s) * var(--path-index));
+                    vector-effect: non-scaling-stroke;
+                  "
+                  d="M19 19 L16 16" />
+          </g>
+        </symbol>
+      </defs>
+    </svg>
+
+    <!-- Animation Examples -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+      <!-- Star Icon -->
+      <div class="bg-white rounded-lg shadow-md p-8">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Star Icon Animation</h2>
+        <p class="text-gray-600 mb-6">Three-layer animation with different timing and stagger effects</p>
+        <div class="flex justify-center">
+          <svg class="icon" viewBox="0 0 24 24">
+            <use href="#icon-star" class="fx icon-bg" style="--draw-duration: 2.6s;" />
+            <use href="#icon-star" class="icon-pg" style="--draw-duration: 1.6s; --draw-delay: 1s; --stagger: 0.1s;" />
+            <use href="#icon-star" class="fx icon-fg" style="--draw-duration: 0.6s; --draw-delay: 2s; --stagger: 0.05s;" />
+          </svg>
+        </div>
+        <p class="text-sm text-gray-500 mt-4 text-center">Hover to animate</p>
+      </div>
+
+      <!-- Sun Rays Icon -->
+      <div class="bg-white rounded-lg shadow-md p-8">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Sun Rays Animation</h2>
+        <p class="text-gray-600 mb-6">Sequential ray drawing with center circle starting first</p>
+        <div class="flex justify-center">
+          <svg class="icon" viewBox="0 0 24 24">
+            <use href="#icon-sun-rays" class="fx icon-bg" style="--draw-duration: 3s; --line-weight: 8; opacity: 0.2;" />
+            <use href="#icon-sun-rays" class="icon-pg" style="--draw-duration: 2s; --draw-delay: 0.5s; --stagger: 0.08s;" />
+            <use href="#icon-sun-rays" class="fx icon-fg" style="--draw-duration: 1s; --draw-delay: 1.5s; --stagger: 0.04s;" />
+          </svg>
+        </div>
+        <p class="text-sm text-gray-500 mt-4 text-center">Hover to animate</p>
+      </div>
+    </div>
+
+    <!-- Integration with NovaIcon Component -->
+    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">NovaIcon Component Integration</h2>
+      <p class="text-gray-600 mb-6">The same animation patterns work with the NovaIcon web component</p>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <nova-icon icon="star-icon" class="w-24 h-24 text-yellow-500"></nova-icon>
+          <p class="text-sm text-gray-500 mt-2">Star (Component)</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="check-icon" class="w-24 h-24 text-green-500"></nova-icon>
+          <p class="text-sm text-gray-500 mt-2">Check (Component)</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="heart-icon" class="w-24 h-24 text-red-500"></nova-icon>
+          <p class="text-sm text-gray-500 mt-2">Heart (Component)</p>
+        </div>
+        <div class="text-center">
+          <nova-icon icon="bell-icon" class="w-24 h-24 text-blue-500"></nova-icon>
+          <p class="text-sm text-gray-500 mt-2">Bell (Component)</p>
+        </div>
+      </div>
+
+      <p class="text-sm text-gray-500 mt-6">Note: Component icons use static rendering. Animated versions would require extending the component with animation support.</p>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-blue-900 mb-2">Next Steps</h3>
+      <ul class="text-blue-800 space-y-2">
+        <li>→ <a href="./tailwind-integration.html" class="underline">Tailwind Integration</a></li>
+        <li>→ <a href="./responsive.html" class="underline">Responsive Design</a></li>
+        <li>→ <a href="./theming.html" class="underline">Theming & Customization</a></li>
+      </ul>
+    </div>
   </div>
 </body>
 </html>

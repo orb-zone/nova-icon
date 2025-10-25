@@ -10,6 +10,9 @@ export class NovaIcon extends HTMLElement {
   constructor() {
     super();
 
+    // Ensure component can be sized properly (inline elements ignore width/height)
+    this.style.display = 'inline-block';
+
     if (typeof window !== 'undefined' && window.matchMedia) {
       const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
       this._reducedMotion = mediaQuery.matches;
@@ -85,6 +88,8 @@ export class NovaIcon extends HTMLElement {
     // Create SVG with <use> element referencing shared symbol
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', iconDef.viewBox || '0 0 24 24');
+    svg.style.width = '100%';
+    svg.style.height = '100%';
     svg.style.color = color;
 
     const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
@@ -100,6 +105,8 @@ export class NovaIcon extends HTMLElement {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 24 24');
     svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    svg.style.width = '100%';
+    svg.style.height = '100%';
 
     const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('x', '2');
