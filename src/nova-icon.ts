@@ -72,9 +72,10 @@ export class NovaIcon extends HTMLElement {
 
     // Set CSS variables on host element
     this.style.setProperty('--icon-size', size);
-    this.style.setProperty('--animation-duration', duration);
-    this.style.setProperty('--animation-delay', delay);
-    this.style.setProperty('--animation-stagger', stagger);
+    this.style.setProperty('--transition-duration', duration);
+    this.style.setProperty('--transition-delay', delay);
+    this.style.setProperty('--stagger-amount', stagger);
+    this.style.setProperty('--dash-offset', '1');
 
     // Parse layers
     if (layers != null) {
@@ -147,10 +148,10 @@ export class NovaIcon extends HTMLElement {
       path.setAttribute('stroke-width', strokeWidths[layerIndex]!);
       path.style.opacity = opacities[layerIndex]!;
 
-      path.setAttribute('stroke-dasharray', '1 0');
-      path.setAttribute('stroke-dashoffset', '1');
-      const staggerDelay = `calc(var(--animation-delay) + ${index} * var(--animation-stagger))`;
-      path.style.transition = `stroke-dashoffset var(--animation-duration) ease-in-out ${staggerDelay}`;
+      path.style.strokeDasharray = '1 0';
+      path.style.strokeDashoffset = 'var(--dash-offset)';
+      const staggerDelay = `calc(var(--transition-delay) + ${index} * var(--stagger-amount))`;
+      path.style.transition = `stroke-dashoffset var(--transition-duration) ease-in-out ${staggerDelay}`;
       path.style.setProperty('--path-index', index.toString());
       svg.appendChild(path);
     });
