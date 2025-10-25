@@ -113,9 +113,9 @@ bun run build
 
 **Run tests**:
 ```bash
-npm run test:e2e           # Headless mode (CI)
-npm run test:e2e:ui        # Interactive UI mode
-npm run test:e2e:headed    # Headed mode for debugging
+bun run test:e2e           # Headless mode (CI)
+bun run test:e2e:ui        # Interactive UI mode
+bun run test:e2e:headed    # Headed mode for debugging
 ```
 
 ### Test Coverage
@@ -140,7 +140,7 @@ The E2E tests verify:
 
 ### E2E Tests (Comprehensive, Real Browsers)
 - **When**: Run on tagged releases
-- **How**: `npm run test:e2e`
+- **How**: `bun run test:e2e`
 - **Location**: `tests/e2e/`
 - **Environment**: Real browsers (Chromium, Firefox, WebKit)
 

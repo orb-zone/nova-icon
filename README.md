@@ -72,5 +72,5 @@ bun test
 **E2E tests** (real browsers):
 ```bash
 bun run build        # Build first
-npm run test:e2e     # Run E2E tests
+bun run test:e2e     # Run E2E tests
 ```

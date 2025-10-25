@@ -29,14 +29,15 @@ specs/              - Feature specifications
 
 **Unit & Integration Tests (run on MRs):**
 ```bash
-bun test
+bun run test
+# or: bun test tests/unit tests/integration tests/contract
 ```
 
 **E2E Tests (run on tagged releases):**
 ```bash
-npm run test:e2e           # Run in headless mode
-npm run test:e2e:ui        # Run with Playwright UI
-npm run test:e2e:headed    # Run in headed mode for debugging
+bun run test:e2e           # Run in headless mode
+bun run test:e2e:ui        # Run with Playwright UI
+bun run test:e2e:headed    # Run in headed mode for debugging
 ```
 
 **Build:**
@@ -142,7 +143,7 @@ This project is configured with Model Context Protocol (MCP) servers to enhance 
 - Use Playwright with system browsers
 - Test actual rendering, animations, and interactions
 - Located in `tests/e2e/`
-- Commands: `npm run test:e2e`, `npm run test:e2e:ui`, `npm run test:e2e:headed`
+- Commands: `bun run test:e2e`, `bun run test:e2e:ui`, `bun run test:e2e:headed`
 
 ### For AI Assistants
 
