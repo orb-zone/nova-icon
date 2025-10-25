@@ -22,7 +22,7 @@
     
     try {
       status.textContent = 'Importing module...';
-      const module = await import('../dist/nova-icon.js');
+      const module = await import('./dist/nova-icon.js');
       status.textContent = 'Module imported: ' + JSON.stringify(Object.keys(module));
       
       const { NovaIconRegistry } = module;

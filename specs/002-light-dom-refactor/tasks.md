@@ -122,15 +122,15 @@ Repository uses single project structure:
 
 ### Tests for User Story 3
 
-- [ ] T027 [US3] Remove `.skip()` from tests/unit/component-attributes.test.ts (3 tests)
-- [ ] T028 [US3] Remove `.skip()` from tests/unit/component-accessibility.test.ts (2 tests)
-- [ ] T029 [US3] Remove `.skip()` from tests/integration/component-rendering.test.ts (1 test)
-- [ ] T030 [US3] Verify all edge case tests pass: missing icon, defs removed, innerHTML cleared in tests/unit/component.test.ts
+- [x] T027 [US3] Remove `.skip()` from tests/unit/component-attributes.test.ts (3 tests)
+- [x] T028 [US3] Remove `.skip()` from tests/unit/component-accessibility.test.ts (2 tests)
+- [x] T029 [US3] Remove `.skip()` from tests/integration/component-rendering.test.ts (1 test)
+- [x] T030 [US3] Verify all edge case tests pass: missing icon, defs removed, innerHTML cleared in tests/unit/component.test.ts
 
 ### Implementation for User Story 3 (Validation Only)
 
-- [ ] T031 [US3] Run full test suite with `bun test` and verify 0 skipped, all pass
-- [ ] T032 [US3] Verify test output shows increased test count (36 → 42 tests passing)
+- [x] T031 [US3] Run full test suite with `bun test` and verify 0 skipped, all pass
+- [x] T032 [US3] Verify test output shows increased test count (36 → 42 tests passing)
 
 **Checkpoint US3 Complete**: Test suite shows 0 skipped, 42+ tests passing
 
@@ -142,9 +142,9 @@ Repository uses single project structure:
 
 ### Documentation
 
-- [ ] T033 [P] Update AGENTS.md if needed (already updated by Phase 1 design)
-- [ ] T034 [P] Create example HTML file demonstrating Tailwind integration in concept-example-tailwind.html
-- [ ] T035 [P] Update README.md with light DOM notes (if applicable)
+- [x] T033 [P] Update AGENTS.md if needed (already updated by Phase 1 design)
+- [x] T034 [P] Create example HTML file demonstrating Tailwind integration in examples/tailwind-integration.html
+- [x] T035 [P] Update README.md with light DOM notes (if applicable)
 
 ### Validation
 
@@ -161,9 +161,9 @@ Repository uses single project structure:
 
 ### Final Checks
 
-- [ ] T043 Run `bun test` one final time - confirm all tests pass, 0 skipped
-- [ ] T044 Run `bun run build` - verify build succeeds with no errors
-- [ ] T045 Verify no breaking changes: API contract tests still pass in tests/contract/
+- [x] T043 Run `bun test` one final time - confirm all tests pass, 0 skipped
+- [x] T044 Run `bun run build` - verify build succeeds with no errors
+- [x] T045 Verify no breaking changes: API contract tests still pass in tests/contract/
 
 **Checkpoint Polish Complete**: Feature ready for PR and merge
 

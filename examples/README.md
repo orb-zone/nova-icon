@@ -4,19 +4,18 @@ Interactive examples demonstrating NovaIcon features and capabilities.
 
 ## Quick Start
 
-1. **Build the project** (from repository root):
-   ```bash
-   bun run build
-   ```
+**Start the example server** (from repository root):
+```bash
+bun run examples
+```
 
-2. **Start the example server**:
-   ```bash
-   bun run examples
-   ```
+This will:
+1. Build the project (`dist/`)
+2. Copy the build to `examples/dist/`
+3. Start the HTTP server on http://localhost:8080
+4. Automatically open your browser
 
-3. **Open your browser** to http://localhost:8080
-
-The server will automatically open the index page which provides links to all examples.
+The server will open the index page which provides links to all examples.
 
 ## Examples
 
@@ -37,20 +36,37 @@ The server will automatically open the index page which provides links to all ex
 
 ```
 examples/
-├── index.html              # Main landing page
-├── shared.js               # Shared icon definitions
-├── basic-usage.html        # Basic usage examples
+├── index.html                  # Main landing page
+├── shared.js                   # Shared icon definitions
+├── basic-usage.html            # Basic usage examples
 ├── tailwind-integration.html   # Tailwind examples
-└── [other examples].html   # Additional examples
+├── dist/                       # Build artifacts (auto-copied, gitignored)
+└── [other examples].html       # Additional examples
 ```
 
 ## Development
 
-The examples reference `../dist/nova-icon.js`, so make sure to:
+The examples reference `./dist/nova-icon.js` (copied from root `dist/`).
 
-1. Build the project first: `bun run build`
-2. Rebuild after making changes to source code
-3. Use `bun run dev` in another terminal for auto-rebuild during development
+**Development workflow:**
+
+1. Make changes to source code in `src/`
+2. Run `bun run examples` to rebuild and serve
+3. The script automatically rebuilds and copies files
+
+**Alternative (watch mode):**
+```bash
+# Terminal 1: Auto-rebuild on changes
+bun run dev
+
+# Terminal 2: Manually copy when needed and serve
+cp -r dist examples/ && bunx http-server ./examples -p 8080
+```
+
+**Clean up:**
+```bash
+bun run examples:clean  # Remove examples/dist
+```
 
 ## Adding New Examples
 
