@@ -45,6 +45,14 @@ bun run test:e2e:headed    # Run in headed mode for debugging
 bun run build
 ```
 
+**Development:**
+```bash
+# test-debug.html - One-off HTML experiments
+# This file is gitignored and can be overwritten at any time
+# Use it for quick manual testing of NovaIcon in a browser
+# Served at: file:///absolute/path/to/test-debug.html
+```
+
 ## Code Style
 
 TypeScript 5: Follow standard conventions
