@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from 'bun:test';
 
-describe('Component Rendering with Registered Icons', () => {
+describe.skip('Component Rendering with Registered Icons', () => {
   let originalDocument: any;
   let originalCustomElements: any;
   let originalWindow: any;

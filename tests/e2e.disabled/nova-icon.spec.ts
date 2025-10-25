@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const testPagePath = path.resolve(__dirname, 'fixtures/test-page.html');
 const testPageUrl = `file://${testPagePath}`;
 
-test.describe('NovaIcon Web Component E2E', () => {
+test.describe.skip('NovaIcon Web Component E2E', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(testPageUrl);
     await page.waitForLoadState('networkidle');

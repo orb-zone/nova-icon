@@ -74,8 +74,20 @@ export class NovaIcon extends HTMLElement {
 
     const iconDef = NovaIconRegistry.get(iconName);
     if (!iconDef) {
-      console.warn(`Icon "${iconName}" not registered`);
+      if (typeof window !== 'undefined' && !this.hasAttribute('data-waiting-for-registration')) {
+        this.setAttribute('data-waiting-for-registration', 'true');
+        window.addEventListener('nova-icons-registered', () => {
+          if (this.getAttribute('data-waiting-for-registration') === 'true') {
+            this.removeAttribute('data-waiting-for-registration');
+            this.render();
+          }
+        }, { once: true });
+      }
       return;
+    }
+
+    if (this.hasAttribute('data-waiting-for-registration')) {
+      this.removeAttribute('data-waiting-for-registration');
     }
 
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -88,10 +100,7 @@ export class NovaIcon extends HTMLElement {
       svg.style.setProperty('--animation-enabled', '1');
     }
 
-    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-    use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#${iconName}`);
-
-    svg.appendChild(use);
+    svg.innerHTML = iconDef.paths.join('');
     this._shadowRoot.appendChild(svg);
   }
 }

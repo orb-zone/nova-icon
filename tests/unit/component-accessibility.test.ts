@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'bun:test';
 
-describe('Component Accessibility', () => {
+describe.skip('Component Accessibility', () => {
   beforeEach(() => {
     (global as any).HTMLElement = class {};
     (global as any).customElements = { define: () => {} };

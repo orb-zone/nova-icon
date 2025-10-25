@@ -48,6 +48,10 @@ export class NovaIconRegistry {
       paths: [pathData],
       viewBox: options?.viewBox,
     });
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('nova-icons-registered'));
+    }
   }
 
   static registerBatch(definitions: Array<{ name: string; paths: string[]; viewBox?: string }>): void {

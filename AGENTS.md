@@ -75,7 +75,9 @@ Based on proof-of-concept research in svg-icon-deep-dive.md, follow these guidel
 - Avoid direct CSS targeting of paths inside `<use>` elements (unreliable across browsers).
 
 ### Key Implementation Rules
-- **Variable Inheritance**: CSS variables inherit through shadow DOM boundaries; use this for theming and animation triggers.
+- **No Web Component Shadow DOM**: The component renders SVG directly in light DOM for Tailwind compatibility (per spec constraint).
+- **SVG `<use>` Shadow Tree**: When SVG `<use>` elements reference `<symbol>` definitions, browsers create an internal shadow tree. CSS variables inherit through this boundary naturally.
+- **Variable Inheritance**: CSS variables inherit through SVG `<use>` shadow trees; use this for theming and animation triggers.
 - **Property Transitions**: Transition actual CSS properties (e.g., `stroke-dashoffset`), not variables themselves.
 - **Stagger Effects**: Use `calc()` in `transition-delay` with `--path-index` for sequential animations.
 - **Layer Composition**: Use multiple `<use>` elements for background, playground, and foreground layers with independent timing.
@@ -90,8 +92,14 @@ Based on proof-of-concept research in svg-icon-deep-dive.md, follow these guidel
 ### Common Pitfalls to Avoid
 - Do not try to animate CSS variables directly (they are not animatable).
 - Do not target paths inside `<use>` with external CSS selectors.
+- Do not use Web Component Shadow DOM (violates spec constraint for Tailwind compatibility).
 - Always use `stroke-dasharray="1 0"` for continuous lines.
 - Set `overflow: visible` on icon SVGs to prevent clipping.
+
+### Shadow DOM Clarification
+The svg-icon-deep-dive.md refers to "shadow DOM" in the context of SVG `<use>` elements' internal rendering, NOT Web Component Shadow DOM. These are different concepts:
+- **SVG `<use>` shadow tree**: Browser's internal rendering of referenced `<symbol>` content (CSS variables inherit naturally)
+- **Web Component Shadow DOM**: Explicit encapsulation via `attachShadow()` (NOT used in this project per spec)
 
 For full implementation details, refer to svg-icon-deep-dive.md.
 

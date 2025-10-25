@@ -35,6 +35,8 @@ Set up the package for the nova-icon web component to ensure proper build, testi
 - Output to dist/ directory as ESM module format (.js with "type": "module" in package.json).
 - Include TypeScript source files in package for JSR.io publication.
 - Declare TailwindCSS as optional peer dependency in package.json (peerDependenciesMeta.tailwindcss.optional: true).
+- **No Web Component Shadow DOM**: Render SVG directly in light DOM for Tailwind compatibility (CSS classes must flow naturally to component).
+- Use shared `<defs>` container with `<symbol>` elements; components reference via `<use>` elements (efficient, matches concept-example.html pattern).
 - Package must include:
   - Core web component (nova-icon.js)
   - TypeScript definitions for runtime registration API
