@@ -15,6 +15,7 @@ describe('NovaIcon.register() API Contract', () => {
         },
         firstChild: null,
       },
+      contains: (el: any) => elements.includes(el),
       createElementNS: (ns: string, tag: string) => {
         const el: any = {
           id: '',

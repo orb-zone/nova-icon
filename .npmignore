@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Output
+dist/
+out/
+build/
+*.tgz
+
+# Coverage
+coverage/
+*.lcov
+
+# Logs
+logs/
+*.log
+
+# Environment
+.env*
+
+# Caches
+.cache/
+.eslintcache/
+*.tsbuildinfo
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Playwright
+playwright-report/
+test-results/
+playwright/.cache/
+
+# Development
+test-debug.html
+
+# Specs (internal)
+specs/
